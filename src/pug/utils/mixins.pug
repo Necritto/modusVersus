@@ -1,0 +1,18 @@
+mixin navLink(link, name)
+  li.navBar__item-li
+    a(href=link).nav__item-link=name
+
+mixin portfolio(link, name)
+  li.navBar__item-li
+    a(href=link)=name
+      i.fa.fa-angle-down
+    ul.submenu
+      li
+        i.fas.fa-angle-right
+        a(href=link) #{name} 1 column page
+      li
+        i.fas.fa-angle-right
+        a(href=link) #{name} 2 column page
+      li
+        i.fas.fa-angle-right
+        a(href=link) #{name} 3 column page

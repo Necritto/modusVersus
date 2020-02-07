@@ -7,14 +7,12 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible" content="ie=edge")
+    script(src="https://kit.fontawesome.com/9d7848fd4b.js" crossorigin="anonymous")
     title #{title}
     block head
 
   body(class=pageClass)
-    .wrapper
-      include ../includes/modules/header
-      .content-wrapper
-        block content
-      include ../includes/modules/footer
+    include ../includes/modules/header
+    block content
 
     block script

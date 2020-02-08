@@ -1,5 +1,15 @@
 @import "utils/vars.scss";
 @import "utils/mixins.scss";
+@import "utils/reset.scss";
+
+body {
+  font-family: $mainFont;
+}
+
+.container {
+  max-width: 1171px;
+  margin: 0 auto;
+}
 
 @import "modules/header.scss";
 @import "modules/main.scss";

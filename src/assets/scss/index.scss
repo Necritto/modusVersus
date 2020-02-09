@@ -9,8 +9,18 @@ body {
 .container {
   max-width: 1171px;
   margin: 0 auto;
+  padding: 0 15px;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: '';
 }
 
 @import "modules/header.scss";
+@import "modules/header__slider.scss";
 @import "modules/main.scss";
 @import "modules/footer.scss";

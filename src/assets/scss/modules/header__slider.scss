@@ -70,7 +70,8 @@
 .header__border {
   display: flex;
   justify-content: center;
-  transform: translateY(500%);
+  position: relative;
+  top: 40px;
 
   .border {
     width: 60px;

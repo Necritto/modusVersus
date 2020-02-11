@@ -4,6 +4,7 @@
 
 body {
   font-family: $mainFont;
+  background-color: #f3f3f3;
 }
 
 .container {
@@ -22,5 +23,4 @@ body {
 
 @import "modules/header.scss";
 @import "modules/header__slider.scss";
-@import "modules/main.scss";
-@import "modules/footer.scss";
+@import "modules/services__section.scss";

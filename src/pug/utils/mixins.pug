@@ -19,3 +19,14 @@ mixin portfolio(link, name)
         span
           i.fas.fa-angle-right
           a(href=link) #{name} 3 column page
+
+mixin card(icon, header, descr)
+  .card-wrap
+    .card-item
+      span.card__icon
+        i(class=icon)
+      h3.card__header
+        =header
+      p.card__descr
+        =descr
+    button.card__btn read more

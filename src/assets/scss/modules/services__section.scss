@@ -47,6 +47,23 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      transition: .5s ease;
+
+      &:hover {
+        transform: translateY(-10px);
+
+        .card-item {
+          box-shadow: 5px 0 5px rgba(0, 0, 0, 0.22);
+        }
+
+        .card__icon {
+          color: #e2534b;
+        }
+
+        .card__btn {
+          background-color: #e2534b;
+        }
+      }
     }
 
     .card-item {

@@ -48,12 +48,10 @@
 
   .submenu {
     position: absolute;
-    top: 80%;
-    left: 0;
     width: 200px;
     height: 116px;
     z-index: 10;
-    transition: 0.5s ease-in-out;
+    transition: 0.3s ease;
     transform: scaleY(0);
     transform-origin: 0 0;
     background: url(../img/Path.svg) no-repeat;

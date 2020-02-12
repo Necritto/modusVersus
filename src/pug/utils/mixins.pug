@@ -30,3 +30,15 @@ mixin card(icon, header, descr)
       p.card__descr
         =descr
     button.card__btn read more
+
+mixin whyImg(url)
+  .why-wrap
+    .why-header
+      .why-dots
+        .dots
+        .dots
+        .dots
+      .why-dash
+        .dash
+    .why-img
+      img(src=url, alt="your image", class="why-img__item")

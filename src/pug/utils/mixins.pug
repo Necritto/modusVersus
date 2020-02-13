@@ -41,4 +41,8 @@ mixin whyImg(url)
       .why-dash
         .dash
     .why-img
-      img(src=url, alt="your image", class="why-img__item")
+      img(src=url, alt="your image" class="why-img__item")
+
+mixin list(text)
+  i.fas.fa-arrow-right
+  p=text

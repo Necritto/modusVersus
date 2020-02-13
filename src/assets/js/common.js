@@ -40,3 +40,18 @@ document.querySelector('.submenu').parentElement.addEventListener('click', (e) =
     }
   });
 }
+
+// Why-slider
+
+{
+  const slider = document.querySelector('.why-slider');
+  slider.children[1].classList.add('main');
+
+  const slides = slider.querySelectorAll('.why-img__item');
+
+  for (let item of slides) {
+    if (item.src !== 'http://localhost:8085/#') {
+      item.style.paddingTop = 0;
+    }
+  }
+}

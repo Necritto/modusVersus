@@ -3,6 +3,8 @@ extends ../layout/main
 block variables
   - var title = 'MODUS versus';
   - var pageClass = 'index-page';
+  - var i = 0;
+  - var list = ['Quisque at massa ipsum','Maecenas a lorem augue, egestas','Cras vitae felis at lacus eleifend', 'Etiam auctor diam pellentesque','Nulla ac massa at dolor','Condimentum eleifend vitae vitae'];
 
 block content
   .header__slider
@@ -64,3 +66,11 @@ block content
           +whyImg('#')
           +whyImg('#')
           +whyImg('#')
+      .why-after
+        .why-choose
+          h1.why-choose__header Why Choose Us ?
+          ul.why-choose__list
+            while i < 6
+              li
+                +list(list[i])
+              -i++

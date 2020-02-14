@@ -46,3 +46,11 @@ mixin whyImg(url)
 mixin list(text)
   i.fas.fa-arrow-right
   p=text
+
+mixin percent(num, str)
+  .percent
+    svg
+      circle(cx="70" r="70")
+    .number
+      h2=num
+    h3=str

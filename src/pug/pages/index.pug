@@ -74,3 +74,18 @@ block content
               li
                 +list(list[i])
               -i++
+        .why-percent
+          p.why-percent__descr Curabitur quis nisl in leo euismod venenatis eu in diam.
+            | Etiam auctor diam pellentesque lectus #[span vehicula mattis].
+            | Nulla ac massa at dolor condimentum eleifend vitae vitae urna.
+          .percents-wrap
+            +percent(50, 'Suspendisse')
+            +percent(70, 'Maecenas')
+            +percent(80, 'Aliquam')
+            +percent(100, 'Habitasse')
+        .why-review
+          h3.review__header What Client’s Say ?
+          p.review__descr Curabitur quis nisl in leo euismod venenatis eu in diam.
+            | Etiam auctor diam pellentesque lectus vehicula mattis.
+            | Nulla ac massa at dolor condimentum
+          span.review__author Jhon Doe

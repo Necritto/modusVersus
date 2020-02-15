@@ -4,6 +4,7 @@ block variables
   - var title = 'MODUS versus';
   - var pageClass = 'index-page';
   - var i = 0;
+  - var q = 0;
   - var list = ['Quisque at massa ipsum','Maecenas a lorem augue, egestas','Cras vitae felis at lacus eleifend', 'Etiam auctor diam pellentesque','Nulla ac massa at dolor','Condimentum eleifend vitae vitae'];
 
 block content
@@ -89,3 +90,22 @@ block content
             | Etiam auctor diam pellentesque lectus vehicula mattis.
             | Nulla ac massa at dolor condimentum
           span.review__author Jhon Doe
+  section.clients
+    .container
+      .clients-header
+        h3.clients-header__head Our Happy Clients
+        .line
+          svg
+            g
+              circle(cx=5 cy=5 r=5)
+              line(x1=0 y1=0 x2=880 y2=0)
+        .clients-buttons
+          .btn.btn-left
+            i.fas.fa-angle-left
+          .btn.btn-right
+            i.fas.fa-angle-right
+      .clients-slider
+        while q < 6
+          .slide
+            img(src="../../assets/img/client.png" alt="client" class="slide-single")
+          -q++

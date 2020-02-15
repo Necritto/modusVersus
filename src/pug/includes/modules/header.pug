@@ -1,0 +1,15 @@
+header.header
+  .container
+    .content-wrapper
+      img(src="../../../assets/img/logo.png" alt="MODUS versus" class="logo")
+      nav.navBar
+        ul.navBar__item.topmenu
+          for item in [{name: 'Home'}, {name: 'About'}, {name: 'Portfolio'}, {name: 'Blog'}, {name: 'Features'}, {name: 'Contacts'}]
+            if (item.name === 'Portfolio')
+              +portfolio('#', 'Portfolio')
+            else
+              +navLink('#', item.name)
+      .search
+        i.fas.fa-search
+.header-ruler
+  img(src="../../../assets/img/ruler.png" alt="ruler" class="ruler")

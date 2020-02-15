@@ -1,0 +1,111 @@
+extends ../layout/main
+
+block variables
+  - var title = 'MODUS versus';
+  - var pageClass = 'index-page';
+  - var i = 0;
+  - var q = 0;
+  - var list = ['Quisque at massa ipsum','Maecenas a lorem augue, egestas','Cras vitae felis at lacus eleifend', 'Etiam auctor diam pellentesque','Nulla ac massa at dolor','Condimentum eleifend vitae vitae'];
+
+block content
+  .header__slider
+    .header__wrap
+      .slider__arrow.angle-left
+        i.fas.fa-angle-double-left
+      .slider__content
+        .slider__content-inner.hide
+          .head-wrap
+            h1.slider-header Modus
+          .descr-wrap
+            p.slider-description Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae, nesciunt!
+        .slider__content-inner.show
+          .head-wrap
+            h1.slider-header Vestibulum
+          .descr-wrap
+            p.slider-description Maecenas tincidunt, augue et rutrum condimentum, libero lectus mattis orci, ut commodo.
+        .slider__content-inner.hide
+          .head-wrap
+            h1.slider-header Versus
+          .descr-wrap
+            p.slider-description Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              | Atque itaque assumenda reprehenderit ab necessitatibus delectus est rem doloremque 
+              | tenetur iure, unde rerum debitis, consequuntur minima.
+      .slider__arrow.angle-right
+        i.fas.fa-angle-double-right
+    .header__border
+      .border
+      .border.border-active
+      .border
+  section.service
+    .container
+      .top-services
+        .wrap
+          h2.service__header Some of our top services
+          p.service__descr Ut eleifend libero sed neque rhoncus consequat.
+            | Maecenas tincidunt, augue et rutrum condimentum,
+            | libero lectus mattis orci, ut commodo. 
+        button.service__btn View&nbsp;more
+      .service-cards
+        +card('far fa-thumbs-up', 'SUSPENDISSE',
+          ' Quisque id tellus quis risus vehicula vehicula ut turpis. In eros nulla, placerat vitae at, vehicula ut nunc.')
+        +card('fas fa-key', 'MAECENAS',
+          'Ut eleifend libero sed neque rhoncus consequat. Maecenas tincidunt, augue et rutrum condimentum, libero lectus mattis orci, ut commodo.')
+        +card('fas fa-flag', 'ALIQUAM',
+          'Vivamus eget ante bibendum arcu vehicula ultricies. Integer venenatis mattis nisl, vitae pulvinar dui tempor non.')
+        +card('fas fa-flask', 'HABITASSE',
+          'Astehicula ultricies. Integer venenatis mattis nisl, vitae pulvinar dui tempor non.')
+  section.why
+    .why__ruler
+      img(src="../../assets/img/ruler-w.svg" alt="white ruler")
+    .container
+      .why-prev
+        .why__title
+          h2.why__header Why modus versus?
+          p.why__descr Capacitance cascading integer reflective interface data development
+            | high bus cache dithering transponder.  
+        .why-slider
+          +whyImg('#')
+          +whyImg('#')
+          +whyImg('#')
+      .why-after
+        .why-choose
+          h1.why-choose__header Why Choose Us ?
+          ul.why-choose__list
+            while i < 6
+              li
+                +list(list[i])
+              -i++
+        .why-percent
+          p.why-percent__descr Curabitur quis nisl in leo euismod venenatis eu in diam.
+            | Etiam auctor diam pellentesque lectus #[span vehicula mattis].
+            | Nulla ac massa at dolor condimentum eleifend vitae vitae urna.
+          .percents-wrap
+            +percent(50, 'Suspendisse')
+            +percent(70, 'Maecenas')
+            +percent(80, 'Aliquam')
+            +percent(100, 'Habitasse')
+        .why-review
+          h3.review__header What Client’s Say ?
+          p.review__descr Curabitur quis nisl in leo euismod venenatis eu in diam.
+            | Etiam auctor diam pellentesque lectus vehicula mattis.
+            | Nulla ac massa at dolor condimentum
+          span.review__author Jhon Doe
+  section.clients
+    .container
+      .clients-header
+        h3.clients-header__head Our Happy Clients
+        .line
+          svg
+            g
+              circle(cx=5 cy=5 r=5)
+              line(x1=0 y1=0 x2=880 y2=0)
+        .clients-buttons
+          .btn.btn-left
+            i.fas.fa-angle-left
+          .btn.btn-right
+            i.fas.fa-angle-right
+      .clients-slider
+        while q < 6
+          .slide
+            img(src="../../assets/img/client.png" alt="client" class="slide-single")
+          -q++

@@ -1,0 +1,55 @@
+footer.footer
+  .footer-ruler
+    img(src="../../../assets/img/ruler.png" alt="ruler" class="ruler")
+  .container
+    .footer-wrap
+      .footer-column.first-column
+        img(src="../../../assets/img/logo.png" alt="MODUS versus" class="logo")
+        p.footer__descr Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          | Nam viverra euismod odio, gravida pellentesque urna varius vitae.
+          | Sed dui lorem, adipiscing in adipiscing et, interdum nec .
+        p.phone Phone: #[a(href="tel:182 2569 5896") 182 2569 5896]
+        p.email e-mail: #[a(href="mailto:info@modu.versus") info@modu.versus]
+      .footer-column.second-column
+        //- need mixin for table
+        table.footer-table 
+          thead
+            tr
+              th Company
+              th Community
+          tbody
+            tr
+              td #[i.fas.fa-angle-right] About
+              td #[i.fas.fa-angle-right] Blog
+            tr
+              td #[i.fas.fa-angle-right] FAQ
+              td #[i.fas.fa-angle-right] Forum
+            tr
+              td #[i.fas.fa-angle-right] Contact
+              td #[i.fas.fa-angle-right] Support
+            tr
+              td #[i.fas.fa-angle-right] AbTermsout
+              td #[i.fas.fa-angle-right] Newsletter
+            tr
+              td #[i.fas.fa-angle-right] Privacy
+              td 
+            tr
+              td #[i.fas.fa-angle-right] Testimonials
+              td
+      .footer-column.third-column
+        p from the #[span blog]
+        .footer-posts
+          .post
+            .post__img
+              i.far.fa-image
+            p.post__descr Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              span 26 May, 2013
+  .footer-social
+    .container
+      .copy
+        p 2013  ModusVersus
+      .socials
+        i.fab.fa-facebook-f
+        i.fab.fa-google-plus-g
+        i.fab.fa-twitter
+        i.fas.fa-rss

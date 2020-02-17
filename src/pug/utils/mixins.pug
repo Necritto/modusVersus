@@ -55,3 +55,11 @@ mixin percent(num, str)
     .number
       h2=num
     h3=str
+
+mixin post(text, date)
+  .post
+    .post__img
+      i.far.fa-image
+    .post__item
+      p.post__descr=text
+      span=date

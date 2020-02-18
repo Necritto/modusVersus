@@ -12,8 +12,8 @@ document.querySelector('.submenu').parentElement.addEventListener('click', (e) =
   const border = slider.querySelector('.header__border');
 
   slider.addEventListener('click', (e) => {
-    let showElement = [...content.children].filter(item => item.classList.contains('show'))[0];
-    let borderActive = [...border.children].filter(item => item.classList.contains('border-active'))[0];
+    const showElement = [...content.children].filter(item => item.classList.contains('show'))[0];
+    const borderActive = [...border.children].filter(item => item.classList.contains('border-active'))[0];
 
     if (e.target.classList.contains('slider__arrow') || e.target.nodeName === 'I') {
       if (e.target.classList.contains('angle-left') || e.target.classList.contains('fa-angle-double-left')) {
@@ -60,75 +60,32 @@ document.querySelector('.submenu').parentElement.addEventListener('click', (e) =
 // Clients slider
 
 {
-  let slides = document.querySelectorAll('.slide');
-  let slidesImg = document.querySelectorAll('.slide-single');
-  let slidesSrc = [];
-  const btnLeft = document.querySelector('.btn-left');
-  const btnRight = document.querySelector('.btn-right');
-  const callCount = slides.length;
+  const slider = document.querySelector('.clients-slider');
+  const prev = document.querySelector('.btn-left');
+  const next = document.querySelector('.btn-right');
+  let direction;
 
-  for (let i = 0; i < slidesImg.length; i++) {
-    slidesSrc[i] = slidesImg[i].src;
-    slides[i].remove();
-  }
+  prev.addEventListener('click', () => {
+    slider.style.transform = 'translate(20%)';
+    direction = 1;
+  });
 
-  let step = 0;
-  let offset = 0;
+  next.addEventListener('click', () => {
+    slider.style.transform = 'translate(-20%)';
+    direction = -1;
+  });
 
-  function draw() {
-    let img = document.createElement('img');
-    let div = document.createElement('div');
-    img.src = slidesSrc[step];
-    div.classList.add('slide');
-    div.appendChild(img);
-    div.style.left = offset * 190 + 'px';
-    document.querySelector('.clients-slider').appendChild(div);
-
-    (step + 1 === slidesSrc.length) ? step = 0 : step++;
-    (offset + 1 === slidesSrc.length) ? offset = 0 : offset++;
-  }
-
-  function toLeft() { // need to fix
-    btnLeft.onclick = null;
-
-    let slidesVisible = document.querySelectorAll('.slide');
-    let offsetLeft = 0;
-
-    for (let i = 0; i < slidesVisible.length; i++) {
-      slidesVisible[i].style.left = offsetLeft * 190 - 190 + 'px';
-      slidesVisible[0].style.left = (slidesVisible.length - 1) * 190 + 'px';
-      offsetLeft++;
+  slider.addEventListener('transitionend', () => {
+    if (direction === -1) {
+      slider.appendChild(slider.firstElementChild);
+    } else if (direction === 1) {
+      slider.prepend(slider.lastElementChild);
     }
 
+    slider.style.transition = 'none';
+    slider.style.transform = 'translate(0)';
     setTimeout(() => {
-      slidesVisible[0].remove();
-      draw();
-      btnLeft.onclick = toLeft;
-    }, 1000);
-  }
-
-  function toRight() {  // need to fix
-    btnRight.onclick = null;
-
-    let slidesVisible = document.querySelectorAll('.slide');
-    let offsetRight = 0;
-
-    for (let i = slidesVisible.length; i !== 0; i--) {
-      slidesVisible[offsetRight].style.left = offsetRight * 190 + 190 + 'px';
-      offsetRight++;
-    }
-
-    setTimeout(() => {
-      slidesVisible[0].remove();
-      draw();
-      btnRight.onclick = toRight;
-    }, 1000);
-  }
-
-  for (let i = 0; i < callCount; i++) {
-    draw();
-  }
-
-  btnLeft.onclick = toLeft;
-  btnRight.onclick = toRight;
+      slider.style.transition = 'all ease 1s';
+    });
+  });
 }

@@ -72,6 +72,10 @@
     }
   }
 
+  .carousel {
+    overflow: hidden;
+  }
+
   .clients-slider {
     position: relative;
     @extend %center;
@@ -79,17 +83,13 @@
     width: 100%;
     height: 90px;
     margin: 40px 0;
-    overflow: hidden;
+    transition: all ease 1s;
 
     .slide {
       width: 170px;
       height: 90px;
       background-color: #f8f8f8;
       @extend %center;
-      transition: all ease 1s;
-      position: absolute;
-      top: 0;
-      left: 0;
     }
   }
 }

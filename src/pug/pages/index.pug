@@ -3,9 +3,7 @@ extends ../layout/main
 block variables
   - var title = 'MODUS versus';
   - var pageClass = 'index-page';
-  - var i = 0;
   - var q = 0;
-  - var list = ['Quisque at massa ipsum','Maecenas a lorem augue, egestas','Cras vitae felis at lacus eleifend', 'Etiam auctor diam pellentesque','Nulla ac massa at dolor','Condimentum eleifend vitae vitae'];
 
 block content
   .header__slider
@@ -68,28 +66,7 @@ block content
           +whyImg('#')
           +whyImg('#')
       .why-after
-        .why-choose
-          h1.why-choose__header Why Choose Us ?
-          ul.why-choose__list
-            while i < 6
-              li
-                +list(list[i])
-              -i++
-        .why-percent
-          p.why-percent__descr Curabitur quis nisl in leo euismod venenatis eu in diam.
-            | Etiam auctor diam pellentesque lectus #[span vehicula mattis].
-            | Nulla ac massa at dolor condimentum eleifend vitae vitae urna.
-          .percents-wrap
-            +percent(50, 'Suspendisse')
-            +percent(70, 'Maecenas')
-            +percent(80, 'Aliquam')
-            +percent(100, 'Habitasse')
-        .why-review
-          h3.review__header What Client’s Say ?
-          p.review__descr Curabitur quis nisl in leo euismod venenatis eu in diam.
-            | Etiam auctor diam pellentesque lectus vehicula mattis.
-            | Nulla ac massa at dolor condimentum
-          span.review__author Jhon Doe
+        include ../includes/modules/block-why
   section.clients
     .container
       .clients-header
@@ -108,6 +85,5 @@ block content
         .clients-slider
           while q < 6
             .slide
-              p=q
               img(src="../../assets/img/client.png" alt="client" class="slide-single")
             -q++

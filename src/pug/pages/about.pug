@@ -1,0 +1,29 @@
+extends ../layout/main
+
+block variables
+  - var title = 'MODUS versus';
+  - var pageClass = 'about-page';
+
+block content
+  main.about-main
+    section.about-us
+      .container
+        .about-wrap
+          h1.about-us__item.about-us__title About us
+          p.about-us__item.about-us__path Home&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;About us
+        .triangle
+    section.about-info
+      .container
+        .info-descr
+          h2.info-descr__header Donec faucibus ultricies congue
+          p.info-descr__descr Maecenas eget turpis turpis.
+            | Nunc vel metus augue.
+            | Aenean euismod cursus ligula eget dapibus.
+            | Praesent vel erat in tortor placerat dignissim.
+            | Duis dapibus aliquam mi, eget euismod sem scelerisque
+            | ut. Vivamus at elit quis urna adipiscing iaculis. 
+            | Curabitur vitae velit in neque dictum blandit. 
+            | Proin in iaculis neque. Pellentesque habitant morbi tristique 
+            | senectus et netus et malesuada fames ac turpis egestas.
+        .info-why
+          include ../includes/modules/block-why

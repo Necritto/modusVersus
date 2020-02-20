@@ -10,7 +10,6 @@ body {
 .container {
   max-width: 1171px;
   margin: 0 auto;
-  padding: 0 15px;
 }
 
 .hide {
@@ -26,4 +25,5 @@ body {
 @import "modules/services__section.scss";
 @import "modules/why__section.scss";
 @import "modules/clients__section.scss";
-@import "modules/footer.scss"
+@import "modules/footer.scss";
+@import "modules/about.scss";

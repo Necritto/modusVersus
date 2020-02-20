@@ -1,115 +1,115 @@
 .service {
-
-  .top-services {
-    background-color: #ececec;
-    margin: 50px 0;
-    padding: 25px;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 10px;
-  }
-
-  .service__header {
-    color: #7f8c8c;
-    font-size: 30px;
-    line-height: 36px;
-    font-weight: 700;
-  }
-
-  .service__descr {
-    color: #777777;
-    font-size: 13px;
-    line-height: 20.8px;
-    margin-top: 5px;
-  }
-
-  .service__btn {
-    color: #ffffff;
-    font-size: 20px;
-    line-height: 24px;
-    text-transform: uppercase;
-    background-color: #e2534b;
-    padding: 17px 45px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-
-  .wrap {
-    flex-direction: column;
-  }
-
-  .service-cards {
-    display: flex;
-    justify-content: space-between;
-    flex: 1 1 25%;
-
-    .card-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: .5s ease;
-
-      &:hover {
-        transform: translateY(-10px);
-
-        .card-item {
-          box-shadow: 5px 0 5px rgba(0, 0, 0, 0.22);
-        }
-
-        .card__icon {
-          color: #e2534b;
-        }
-
-        .card__btn {
-          background-color: #e2534b;
-        }
-      }
-    }
+  .card-wrap:hover {
+    transform: translateY(-10px);
 
     .card-item {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-      max-width: 270px;
-      height: 310px;
-      background-color: #ffffff;
-      box-shadow: 0 5px 0 rgba(0, 0, 0, 0.22);
-      border-radius: 10px;
-      padding: 0 15px;
+      box-shadow: 5px 0 5px rgba(0, 0, 0, 0.22);
+    }
 
-      .card__icon {
-        color: #62bdbd;
-        font-size: 60px;
-      }
-
-      .card__header {
-        color: #7f8c8c;
-        font-size: 16px;
-        line-height: 19.2px;
-        font-weight: 700;
-        text-transform: uppercase;
-        margin-top: 15px;
-      }
-
-      .card__descr {
-        color: #777777;
-        font-size: 13px;
-        line-height: 20.8px;
-        margin-top: 35px;
-      }
+    .card__icon {
+      color: #e2534b;
     }
 
     .card__btn {
-      color: #ffffff;
-      font-size: 14px;
-      line-height: 16.8px;
-      background-color: #62b9b0;
-      padding: 20px 65px;
-      border-radius: 10px;
-      max-width: 200px;
-      transform: translateY(-50%);
-      cursor: pointer;
+      background-color: #e2534b;
     }
+  }
+}
+
+.top-services {
+  background-color: #ececec;
+  margin: 50px 0;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+}
+
+.service__header {
+  color: #7f8c8c;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 700;
+}
+
+.service__descr {
+  color: #777777;
+  font-size: 13px;
+  line-height: 20.8px;
+  margin-top: 5px;
+}
+
+.service__btn {
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+  background-color: #e2534b;
+  padding: 17px 45px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.wrap {
+  flex-direction: column;
+}
+
+.service-cards {
+  display: flex;
+  justify-content: space-between;
+  flex: 1 1 25%;
+
+  .card-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: .5s ease;
+  }
+
+  .card-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    max-width: 270px;
+    height: 310px;
+    background-color: #ffffff;
+    box-shadow: 0 5px 0 rgba(0, 0, 0, 0.22);
+    border-radius: 10px;
+    padding: 0 15px;
+
+    .card__icon {
+      color: #62bdbd;
+      font-size: 60px;
+    }
+
+    .card__header {
+      color: #7f8c8c;
+      font-size: 16px;
+      line-height: 19.2px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: 15px;
+    }
+
+    .card__descr {
+      color: #777777;
+      font-size: 13px;
+      line-height: 20.8px;
+      margin-top: 35px;
+    }
+  }
+
+  .card__btn {
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 16.8px;
+    background-color: #62b9b0;
+    padding: 20px 65px;
+    border-radius: 10px;
+    max-width: 200px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 100;
   }
 }

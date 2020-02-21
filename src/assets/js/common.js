@@ -57,8 +57,7 @@ if (indexPage) {
 
 // Portfolio link
 
-document.querySelector('.submenu').parentElement.addEventListener('click', (e) => {
-  e.preventDefault();
+document.querySelector('.submenu').parentElement.addEventListener('click', () => {
   document.querySelector('.submenu').classList.toggle('toggle');
 });
 

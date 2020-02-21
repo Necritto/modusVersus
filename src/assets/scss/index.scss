@@ -20,6 +20,17 @@ body {
   display: '';
 }
 
+.btn {
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 16.8px;
+  background-color: #62b9b0;
+  padding: 20px 65px;
+  border-radius: 10px;
+  max-width: 200px;
+  cursor: pointer;
+}
+
 @import "modules/header.scss";
 @import "modules/header__slider.scss";
 @import "modules/services__section.scss";
@@ -27,3 +38,4 @@ body {
 @import "modules/clients__section.scss";
 @import "modules/footer.scss";
 @import "modules/about.scss";
+@import "modules/portfolio1col.scss";

@@ -1,4 +1,6 @@
 const indexPage = document.querySelector('.index-page');
+const aboutPage = document.querySelector('.about-page');
+const portfolioPage = document.querySelector('.portfolioPage');
 
 if (indexPage) {
 
@@ -62,8 +64,7 @@ document.querySelector('.submenu').parentElement.addEventListener('click', () =>
 });
 
 // Clients slider
-
-{
+if (indexPage || aboutPage) {
   const slider = document.querySelector('.clients-slider');
   const prev = document.querySelector('.btn-left');
   const next = document.querySelector('.btn-right');
@@ -91,5 +92,54 @@ document.querySelector('.submenu').parentElement.addEventListener('click', () =>
     setTimeout(() => {
       slider.style.transition = 'all ease 1s';
     });
+  });
+}
+
+if (portfolioPage) {
+
+  // Portfolio pages
+
+  const post = document.querySelector('.portfolio-post');
+  const portfolioPostPages = document.querySelector('.portfolio-post-pages');
+  const portfolioPagesItem = document.querySelectorAll('.portfolio-pages__item');
+  let count = 0;
+
+  portfolioPagesItem[0].style.backgroundColor = '#639792';
+
+  portfolioPostPages.addEventListener('click', (e) => {
+    if (e.target.className === 'prev-btn' || e.target.className === 'fas fa-angle-left') {
+      if (count === 0) {
+        return;
+      }
+      portfolioPagesItem[count].style.backgroundColor = '';
+      count--;
+      portfolioPagesItem[count].style.backgroundColor = '#639792';
+    }
+
+    if (e.target.className === 'next-btn' || e.target.className === 'fas fa-angle-right') {
+      if (count === portfolioPagesItem.length - 1) {
+        return;
+      }
+      portfolioPagesItem[count].style.backgroundColor = '';
+      count++;
+      portfolioPagesItem[count].style.backgroundColor = '#639792';
+      post.innerHTML = `
+        <div class="portfolio-post">
+          <div class="portfolio-img">
+              <div class="withoutImg"><i class="far fa-image"></i></div>
+          </div>
+          <div class="portfolio-post-main">
+              <h3 class="portfolio-post__item portfolio-post__header"></h3>
+              <p class="portfolio-post__item portfolio-post__descr"></p>
+              <div class="portfolio-post-footer">
+                  <div class="portfolio-post-address">
+                      <a class="portfolio-post__link" target="_blank">
+                          <div class="chain-bg"><i class="fas fa-link"></i></div>
+                      </a>
+                  </div><button class="btn portfolio-post-btn">View&nbsp;details</button></div>
+          </div>
+        </div>
+      `;
+    }
   });
 }

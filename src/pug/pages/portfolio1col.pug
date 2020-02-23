@@ -32,8 +32,8 @@ block content
             for item in ['all', 'web design', 'logo design', 'photography', 'wordpress']
               button.portfolio-btn__item=item
           .portfolio-post-block
-            - for (var i = 0; i < postOnPage; i++)
-              +portfolioPost(postContent.img ,postContent.header, postContent.descr, postContent.link)
+            //- - for (var i = 0; i < postOnPage; i++)
+            //-   +portfolioPost(postContent.img ,postContent.header, postContent.descr, postContent.link)
           .portfolio-post-pages
             button.prev-btn #[i.fas.fa-angle-left]
             .portfolio-pages

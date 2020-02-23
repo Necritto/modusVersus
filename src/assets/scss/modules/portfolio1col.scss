@@ -75,12 +75,17 @@
 
   .portfolio-post__item {
     color: #7f8c8c;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
   }
 
   .portfolio-post__header {
     font-size: 20px;
     line-height: 24px;
     margin-bottom: 25px;
+    max-width: 550px;
   }
 
   .portfolio-post__descr {
@@ -139,6 +144,7 @@
     font-size: 14px;
     line-height: 16.8px;
     text-transform: uppercase;
+    @extend %center;
 
     &:hover {
       background-color: #e8645a;
@@ -181,4 +187,11 @@
   .next-btn {
     margin-left: 30px;
   }
+}
+
+.wrong {
+  color: #ff0000;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
 }

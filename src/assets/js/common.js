@@ -99,10 +99,38 @@ if (portfolioPage) {
 
   // Portfolio pages
 
-  const post = document.querySelector('.portfolio-post');
+  const postBlock = document.querySelector('.portfolio-post-block');
   const portfolioPostPages = document.querySelector('.portfolio-post-pages');
   const portfolioPagesItem = document.querySelectorAll('.portfolio-pages__item');
   let count = 0;
+
+  fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(response => response.json())
+    .then(data => {
+      for (let i = 0; i < data.length; i++) {
+        const post = document.createElement('div');
+        post.classList.add('portfolio-post');
+        post.innerHTML = `
+          <div class="portfolio-img">
+            <div class="withoutImg"><i class="far fa-image"></i></div>
+            </div >
+          <div class="portfolio-post-main">
+            <h3 class="portfolio-post__item portfolio-post__header">${data[i].title}.</h3>
+            <p class="portfolio-post__item portfolio-post__descr">${data[i].body}.</p>
+            <div class="portfolio-post-footer">
+              <div class="portfolio-post-address">
+                <a class="portfolio-post__link" target="_blank">www.project.dom
+                    <div class="chain-bg"><i class="fas fa-link"></i></div>
+                </a>
+              </div>
+              <button class="btn portfolio-post-btn">View&nbsp;details</button>
+            </div>
+          </div>
+        `;
+        postBlock.appendChild(post);
+      }
+    })
+    .catch(() => postBlock.innerHTML = '<h2 class="wrong">Something went wrong!</h2>');
 
   portfolioPagesItem[0].style.backgroundColor = '#639792';
 
@@ -123,23 +151,6 @@ if (portfolioPage) {
       portfolioPagesItem[count].style.backgroundColor = '';
       count++;
       portfolioPagesItem[count].style.backgroundColor = '#639792';
-      post.innerHTML = `
-        <div class="portfolio-post">
-          <div class="portfolio-img">
-              <div class="withoutImg"><i class="far fa-image"></i></div>
-          </div>
-          <div class="portfolio-post-main">
-              <h3 class="portfolio-post__item portfolio-post__header"></h3>
-              <p class="portfolio-post__item portfolio-post__descr"></p>
-              <div class="portfolio-post-footer">
-                  <div class="portfolio-post-address">
-                      <a class="portfolio-post__link" target="_blank">
-                          <div class="chain-bg"><i class="fas fa-link"></i></div>
-                      </a>
-                  </div><button class="btn portfolio-post-btn">View&nbsp;details</button></div>
-          </div>
-        </div>
-      `;
     }
   });
 }

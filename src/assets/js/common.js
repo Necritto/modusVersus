@@ -95,22 +95,25 @@ if (indexPage || aboutPage) {
   });
 }
 
-if (portfolioPage) {
+// if (portfolioPage) {
 
-  // Portfolio pages
+// Portfolio pages
 
-  const postBlock = document.querySelector('.portfolio-post-block');
-  const portfolioPostPages = document.querySelector('.portfolio-post-pages');
-  const portfolioPagesItem = document.querySelectorAll('.portfolio-pages__item');
-  let count = 0;
+const postBlock = document.querySelector('.portfolio-post-block');
+const portfolioPages = document.querySelector('.portfolio-pages');
+// const portfolioPagesItem = document.querySelectorAll('.portfolio-pages__item');
+// let count = 0;
+let currentPage = 1;
+let rows = 4;
+let posts = [];
 
-  fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(response => response.json())
-    .then(data => {
-      for (let i = 0; i < data.length; i++) {
-        const post = document.createElement('div');
-        post.classList.add('portfolio-post');
-        post.innerHTML = `
+fetch('https://jsonplaceholder.typicode.com/posts')
+  .then(response => response.json())
+  .then(data => {
+    for (let i = 0; i < 12; i++) {
+      const post = document.createElement('div');
+      post.classList.add('portfolio-post');
+      post.innerHTML = `
           <div class="portfolio-img">
             <div class="withoutImg"><i class="far fa-image"></i></div>
             </div >
@@ -127,30 +130,73 @@ if (portfolioPage) {
             </div>
           </div>
         `;
-        postBlock.appendChild(post);
-      }
-    })
-    .catch(() => postBlock.innerHTML = '<h2 class="wrong">Something went wrong!</h2>');
-
-  portfolioPagesItem[0].style.backgroundColor = '#639792';
-
-  portfolioPostPages.addEventListener('click', (e) => {
-    if (e.target.className === 'prev-btn' || e.target.className === 'fas fa-angle-left') {
-      if (count === 0) {
-        return;
-      }
-      portfolioPagesItem[count].style.backgroundColor = '';
-      count--;
-      portfolioPagesItem[count].style.backgroundColor = '#639792';
+      posts.push(post);
     }
 
-    if (e.target.className === 'next-btn' || e.target.className === 'fas fa-angle-right') {
-      if (count === portfolioPagesItem.length - 1) {
-        return;
+    let displayList = (items, wrapper, rowsPerPage, page) => {
+      wrapper.innerHTML = '';
+      page--;
+
+      let start = rowsPerPage * page;
+      let end = start + rowsPerPage;
+      let paginatedItems = items.slice(start, end);
+
+      for (let i = 0; i < paginatedItems.length; i++) {
+        postBlock.appendChild(paginatedItems[i]);
       }
-      portfolioPagesItem[count].style.backgroundColor = '';
-      count++;
-      portfolioPagesItem[count].style.backgroundColor = '#639792';
-    }
+    };
+
+    let paginationBtn = page => {
+      let button = document.createElement('button');
+      button.textContent = page;
+      button.classList.add('portfolio-pages__item');
+
+      if (currentPage === page) {
+        button.style.backgroundColor = '#639792';
+      }
+    };
+
+    let setupPagination = (items, wrapper, rowsPerPage) => {
+      wrapper.innerHTML = '';
+
+      let pageCount = Math.ceil(items.length / rowsPerPage);
+
+      for (let i = 1; i < pageCount + 1; i++) {
+        let btn = paginationBtn(i);
+        wrapper.appendChild(btn);
+      }
+    };
+
+    displayList(posts, postBlock, rows, currentPage);
+    setupPagination(posts, portfolioPages, rows);
+  })
+  .catch((err) => {
+    postBlock.innerHTML = '<h2 class="wrong">Something went wrong!</h2>';
+    console.log(err);
   });
-}
+
+
+// portfolioPagesItem[0].style.backgroundColor = '#639792';
+
+// portfolioPostPages.addEventListener('click', (e) => {
+//   if (e.target.className === 'prev-btn' || e.target.className === 'fas fa-angle-left') {
+//     if (count === 0) {
+//       return;
+//     }
+//     portfolioPagesItem[count].style.backgroundColor = '';
+//     count--;
+//     portfolioPagesItem[count].style.backgroundColor = '#639792';
+//   }
+
+//   if (e.target.className === 'next-btn' || e.target.className === 'fas fa-angle-right') {
+//     if (count === portfolioPagesItem.length - 1) {
+//       return;
+//     }
+//     portfolioPagesItem[count].style.backgroundColor = '';
+//     count++;
+//     portfolioPagesItem[count].style.backgroundColor = '#639792';
+//   }
+// });
+
+
+

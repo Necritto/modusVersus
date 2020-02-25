@@ -95,25 +95,23 @@ if (indexPage || aboutPage) {
   });
 }
 
-// if (portfolioPage) {
+if (portfolioPage) {
 
-// Portfolio pages
+  // Portfolio pages
 
-const postBlock = document.querySelector('.portfolio-post-block');
-const portfolioPages = document.querySelector('.portfolio-pages');
-// const portfolioPagesItem = document.querySelectorAll('.portfolio-pages__item');
-// let count = 0;
-let currentPage = 1;
-let rows = 4;
-let posts = [];
+  const postBlock = document.querySelector('.portfolio-post-block');
+  const portfolioPages = document.querySelector('.portfolio-pages');
+  let currentPage = 1;
+  let rows = 4;
+  let posts = [];
 
-fetch('https://jsonplaceholder.typicode.com/posts')
-  .then(response => response.json())
-  .then(data => {
-    for (let i = 0; i < 12; i++) {
-      const post = document.createElement('div');
-      post.classList.add('portfolio-post');
-      post.innerHTML = `
+  fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(response => response.json())
+    .then(data => {
+      for (let i = 0; i < data.length; i++) {
+        const post = document.createElement('div');
+        post.classList.add('portfolio-post');
+        post.innerHTML = `
           <div class="portfolio-img">
             <div class="withoutImg"><i class="far fa-image"></i></div>
             </div >
@@ -130,73 +128,55 @@ fetch('https://jsonplaceholder.typicode.com/posts')
             </div>
           </div>
         `;
-      posts.push(post);
-    }
-
-    let displayList = (items, wrapper, rowsPerPage, page) => {
-      wrapper.innerHTML = '';
-      page--;
-
-      let start = rowsPerPage * page;
-      let end = start + rowsPerPage;
-      let paginatedItems = items.slice(start, end);
-
-      for (let i = 0; i < paginatedItems.length; i++) {
-        postBlock.appendChild(paginatedItems[i]);
+        posts.push(post);
       }
-    };
 
-    let paginationBtn = page => {
-      let button = document.createElement('button');
-      button.textContent = page;
-      button.classList.add('portfolio-pages__item');
+      let displayList = (items, wrapper, rowsPerPage, page) => {
+        wrapper.innerHTML = '';
+        page--;
 
-      if (currentPage === page) {
-        button.style.backgroundColor = '#639792';
-      }
-    };
+        let start = rowsPerPage * page;
+        let end = start + rowsPerPage;
+        let paginatedItems = items.slice(start, end);
 
-    let setupPagination = (items, wrapper, rowsPerPage) => {
-      wrapper.innerHTML = '';
+        for (let i = 0; i < paginatedItems.length; i++) {
+          postBlock.appendChild(paginatedItems[i]);
+        }
+      };
 
-      let pageCount = Math.ceil(items.length / rowsPerPage);
+      let setupPagination = (items, wrapper, rowsPerPage) => {
+        wrapper.innerHTML = '';
 
-      for (let i = 1; i < pageCount + 1; i++) {
-        let btn = paginationBtn(i);
-        wrapper.appendChild(btn);
-      }
-    };
+        let pageCount = Math.ceil(items.length / rowsPerPage);
 
-    displayList(posts, postBlock, rows, currentPage);
-    setupPagination(posts, portfolioPages, rows);
-  })
-  .catch((err) => {
-    postBlock.innerHTML = '<h2 class="wrong">Something went wrong!</h2>';
-    console.log(err);
-  });
+        for (let i = 1; i < pageCount + 1; i++) {
+          let button = document.createElement('button');
+          button.textContent = i;
+          button.classList.add('portfolio-pages__item');
 
+          if (currentPage === i) {
+            button.classList.add('activeBtn');
+          }
 
-// portfolioPagesItem[0].style.backgroundColor = '#639792';
+          button.addEventListener('click', () => {
+            currentPage = i;
+            displayList(items, postBlock, rows, currentPage);
 
-// portfolioPostPages.addEventListener('click', (e) => {
-//   if (e.target.className === 'prev-btn' || e.target.className === 'fas fa-angle-left') {
-//     if (count === 0) {
-//       return;
-//     }
-//     portfolioPagesItem[count].style.backgroundColor = '';
-//     count--;
-//     portfolioPagesItem[count].style.backgroundColor = '#639792';
-//   }
+            let currentBtn = document.querySelector('.activeBtn');
+            currentBtn.classList.remove('activeBtn');
 
-//   if (e.target.className === 'next-btn' || e.target.className === 'fas fa-angle-right') {
-//     if (count === portfolioPagesItem.length - 1) {
-//       return;
-//     }
-//     portfolioPagesItem[count].style.backgroundColor = '';
-//     count++;
-//     portfolioPagesItem[count].style.backgroundColor = '#639792';
-//   }
-// });
+            button.classList.add('activeBtn');
+          });
+          wrapper.appendChild(button);
+        }
+      };
 
+      displayList(posts, postBlock, rows, currentPage);
+      setupPagination(posts, portfolioPages, rows);
+    })
+    .catch((err) => {
+      postBlock.innerHTML = '<h2 class="wrong">Something went wrong!</h2>';
+      console.log(err);
+    });
 
-
+}

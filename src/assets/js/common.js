@@ -148,14 +148,29 @@ if (portfolioPage) {
         wrapper.innerHTML = '';
 
         let pageCount = Math.ceil(items.length / rowsPerPage);
+        const from = 5;
+        const to = pageCount - 3;
+        let count = 0;
+        const portfolioPostPages = document.querySelector('.portfolio-post-pages');
 
         for (let i = 1; i < pageCount + 1; i++) {
           let button = document.createElement('button');
+          const dotBtn = document.createElement('button');
           button.textContent = i;
           button.classList.add('portfolio-pages__item');
+          dotBtn.classList.add('portfolio-pages__item');
 
           if (currentPage === i) {
             button.classList.add('activeBtn');
+          }
+
+          if (i > from && i <= to) {
+            button.style.display = 'none';
+          }
+
+          if (i === from + 1) {
+            dotBtn.innerHTML = '<i class="fas fa-ellipsis-h"></i>';
+            wrapper.appendChild(dotBtn);
           }
 
           button.addEventListener('click', () => {
@@ -167,8 +182,50 @@ if (portfolioPage) {
 
             button.classList.add('activeBtn');
           });
+
           wrapper.appendChild(button);
         }
+
+        portfolioPostPages.addEventListener('click', (e) => {
+          if (e.target === portfolioPostPages.firstElementChild
+            || e.target === portfolioPostPages.firstElementChild.children[0]) {
+
+            if (currentPage !== 1) {
+              currentPage--;
+              let activeBtn = document.querySelector('.activeBtn');
+              activeBtn.classList.remove('activeBtn');
+              activeBtn.previousElementSibling.classList.add('activeBtn');
+
+              // if (currentPage <= from) {
+              //   portfolioPages.children[from++].style.display = 'none';
+              //   portfolioPages.children[currentPage].style.display = '';
+              // }
+              displayList(items, postBlock, rows, currentPage);
+            }
+          }
+        }); // redo this block
+
+        portfolioPostPages.addEventListener('click', (e) => {
+          if (e.target === portfolioPostPages.lastElementChild
+            || e.target === portfolioPostPages.lastElementChild.children[0]) {
+
+            if (currentPage !== pageCount) {
+              currentPage++;
+              let activeBtn = document.querySelector('.activeBtn');
+              activeBtn.classList.remove('activeBtn');
+              activeBtn.nextElementSibling.classList.add('activeBtn');
+
+              if (currentPage >= from + 1) {
+                if (count !== pageCount - 8) {
+                  portfolioPages.children[count++].style.display = 'none';
+                  portfolioPages.children[currentPage].style.display = '';
+                }
+              } // redo this block
+
+              displayList(items, postBlock, rows, currentPage);
+            }
+          }
+        });
       };
 
       displayList(posts, postBlock, rows, currentPage);

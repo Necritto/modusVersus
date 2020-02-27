@@ -103,7 +103,8 @@ if (portfolioPage) {
   const portfolioPages = document.querySelector('.portfolio-pages');
   let currentPage = 1;
   let rows = 4;
-  let posts = [];
+  const posts = [];
+  const btns = [];
 
   fetch('https://jsonplaceholder.typicode.com/posts')
     .then(response => response.json())
@@ -150,15 +151,15 @@ if (portfolioPage) {
         let pageCount = Math.ceil(items.length / rowsPerPage);
         const from = 5;
         const to = pageCount - 3;
-        let count = 0;
+        let countActiveBtn = 0;
+        let countHideBtn = 0;
         const portfolioPostPages = document.querySelector('.portfolio-post-pages');
 
         for (let i = 1; i < pageCount + 1; i++) {
           let button = document.createElement('button');
-          const dotBtn = document.createElement('button');
           button.textContent = i;
           button.classList.add('portfolio-pages__item');
-          dotBtn.classList.add('portfolio-pages__item');
+          btns.push(button);
 
           if (currentPage === i) {
             button.classList.add('activeBtn');
@@ -166,11 +167,6 @@ if (portfolioPage) {
 
           if (i > from && i <= to) {
             button.style.display = 'none';
-          }
-
-          if (i === from + 1) {
-            dotBtn.innerHTML = '<i class="fas fa-ellipsis-h"></i>';
-            wrapper.appendChild(dotBtn);
           }
 
           button.addEventListener('click', () => {
@@ -186,41 +182,55 @@ if (portfolioPage) {
           wrapper.appendChild(button);
         }
 
+        btns[btns.length - 3].insertAdjacentHTML('beforebegin',
+          '<button class="portfolio-pages__item dotBtn"><i class="fas fa-ellipsis-h"></i></button>'
+        );
+
         portfolioPostPages.addEventListener('click', (e) => {
           if (e.target === portfolioPostPages.firstElementChild
             || e.target === portfolioPostPages.firstElementChild.children[0]) {
 
             if (currentPage !== 1) {
               currentPage--;
-              let activeBtn = document.querySelector('.activeBtn');
-              activeBtn.classList.remove('activeBtn');
-              activeBtn.previousElementSibling.classList.add('activeBtn');
 
-              // if (currentPage <= from) {
-              //   portfolioPages.children[from++].style.display = 'none';
-              //   portfolioPages.children[currentPage].style.display = '';
-              // }
+              btns[countActiveBtn].classList.remove('activeBtn');
+              countActiveBtn--;
+              btns[countActiveBtn].classList.add('activeBtn');
+
+              if (currentPage < to && currentPage >= from) {
+                btns[currentPage - 5].style.display = '';
+                btns[currentPage].style.display = 'none';
+              }
+
+              if (currentPage === to - 1) {
+                document.querySelector('.dotBtn').style.display = '';
+                btns[currentPage].style.display = 'none';
+              }
+
               displayList(items, postBlock, rows, currentPage);
             }
           }
-        }); // redo this block
 
-        portfolioPostPages.addEventListener('click', (e) => {
           if (e.target === portfolioPostPages.lastElementChild
             || e.target === portfolioPostPages.lastElementChild.children[0]) {
 
             if (currentPage !== pageCount) {
               currentPage++;
-              let activeBtn = document.querySelector('.activeBtn');
-              activeBtn.classList.remove('activeBtn');
-              activeBtn.nextElementSibling.classList.add('activeBtn');
 
-              if (currentPage >= from + 1) {
-                if (count !== pageCount - 8) {
-                  portfolioPages.children[count++].style.display = 'none';
-                  portfolioPages.children[currentPage].style.display = '';
-                }
-              } // redo this block
+              btns[countActiveBtn].classList.remove('activeBtn');
+              countActiveBtn++;
+              btns[countActiveBtn].classList.add('activeBtn');
+
+              if (currentPage > from && currentPage < to) {
+                btns[countHideBtn].style.display = 'none';
+                countHideBtn++;
+                btns[currentPage - 1].style.display = '';
+              }
+
+              if (currentPage === to - 1) {
+                document.querySelector('.dotBtn').style.display = 'none';
+                btns[currentPage].style.display = '';
+              }
 
               displayList(items, postBlock, rows, currentPage);
             }

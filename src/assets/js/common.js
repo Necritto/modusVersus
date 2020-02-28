@@ -171,6 +171,16 @@ if (portfolioPage) {
 
           button.addEventListener('click', () => {
             currentPage = i;
+
+            // {
+
+            //   Today, all my attempts to make working navigation were unsuccessful, and since I need to make at least one commit, I do this with this comment.
+            //   I tried updating countActiveBtn and countHideBtn when an event on the button occurred,
+            //   but that didn't work. There was also an attempt to organize work through the neighbors of the element. Also unsuccessful.
+            //   So far, I can’t find a solution to this problem.
+
+            // }
+
             displayList(items, postBlock, rows, currentPage);
 
             let currentBtn = document.querySelector('.activeBtn');

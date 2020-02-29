@@ -151,7 +151,6 @@ if (portfolioPage) {
         let pageCount = Math.ceil(items.length / rowsPerPage);
         const from = 5;
         const to = pageCount - 3;
-        let countActiveBtn = 0;
         let countHideBtn = 0;
         const portfolioPostPages = document.querySelector('.portfolio-post-pages');
 
@@ -171,15 +170,6 @@ if (portfolioPage) {
 
           button.addEventListener('click', () => {
             currentPage = i;
-
-            // {
-
-            //   Today, all my attempts to make working navigation were unsuccessful, and since I need to make at least one commit, I do this with this comment.
-            //   I tried updating countActiveBtn and countHideBtn when an event on the button occurred,
-            //   but that didn't work. There was also an attempt to organize work through the neighbors of the element. Also unsuccessful.
-            //   So far, I can’t find a solution to this problem.
-
-            // }
 
             displayList(items, postBlock, rows, currentPage);
 
@@ -202,10 +192,10 @@ if (portfolioPage) {
 
             if (currentPage !== 1) {
               currentPage--;
+              countHideBtn--;
 
-              btns[countActiveBtn].classList.remove('activeBtn');
-              countActiveBtn--;
-              btns[countActiveBtn].classList.add('activeBtn');
+              btns.forEach(item => item.classList.remove('activeBtn'));
+              btns[currentPage - 1].classList.add('activeBtn');
 
               if (currentPage < to && currentPage >= from) {
                 btns[currentPage - 5].style.display = '';
@@ -215,6 +205,10 @@ if (portfolioPage) {
               if (currentPage === to - 1) {
                 document.querySelector('.dotBtn').style.display = '';
                 btns[currentPage].style.display = 'none';
+              }
+
+              if (currentPage < from) {
+                countHideBtn = 0;
               }
 
               displayList(items, postBlock, rows, currentPage);
@@ -227,13 +221,11 @@ if (portfolioPage) {
             if (currentPage !== pageCount) {
               currentPage++;
 
-              btns[countActiveBtn].classList.remove('activeBtn');
-              countActiveBtn++;
-              btns[countActiveBtn].classList.add('activeBtn');
+              btns.forEach(item => item.classList.remove('activeBtn'));
+              btns[currentPage - 1].classList.add('activeBtn');
 
               if (currentPage > from && currentPage < to) {
-                btns[countHideBtn].style.display = 'none';
-                countHideBtn++;
+                btns[currentPage - (currentPage - countHideBtn++)].style.display = 'none';
                 btns[currentPage - 1].style.display = '';
               }
 

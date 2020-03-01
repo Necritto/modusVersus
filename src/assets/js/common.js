@@ -153,6 +153,7 @@ if (portfolioPage) {
         const to = pageCount - 3;
         let countHideBtn = 0;
         const portfolioPostPages = document.querySelector('.portfolio-post-pages');
+        let isClicked = false;
 
         for (let i = 1; i < pageCount + 1; i++) {
           let button = document.createElement('button');
@@ -165,11 +166,12 @@ if (portfolioPage) {
           }
 
           if (i > from && i <= to) {
-            button.style.display = 'none';
+            button.classList.add('hide');
           }
 
           button.addEventListener('click', () => {
             currentPage = i;
+            isClicked = true;
 
             displayList(items, postBlock, rows, currentPage);
 
@@ -197,19 +199,33 @@ if (portfolioPage) {
               btns.forEach(item => item.classList.remove('activeBtn'));
               btns[currentPage - 1].classList.add('activeBtn');
 
-              if (currentPage < to && currentPage >= from) {
-                btns[currentPage - 5].style.display = '';
-                btns[currentPage].style.display = 'none';
+              if (!isClicked && currentPage < to && currentPage >= from) {
+                btns[currentPage - from].classList.remove('hide');
+                btns[currentPage].classList.add('hide');
               }
 
               if (currentPage === to - 1) {
-                document.querySelector('.dotBtn').style.display = '';
-                btns[currentPage].style.display = 'none';
+                document.querySelector('.dotBtn').classList.remove('hide');
+                btns[currentPage].classList.add('hide');
               }
 
               if (currentPage < from) {
                 countHideBtn = 0;
               }
+
+              if (isClicked && btns[currentPage].classList.contains(!'hide')) {
+                btns.forEach(item => item.classList.remove('activeBtn'));
+                btns[currentPage - 1].classList.add('activeBtn');
+              }
+
+              if (isClicked && btns[currentPage - 1].classList.contains('hide')) {
+                btns[currentPage + from - 1].classList.add('hide');
+                btns[currentPage - 1].classList.remove('hide');
+              }
+
+              // {
+              //   Will add logic for processing page switching when clicking buttons after dots.
+              // }
 
               displayList(items, postBlock, rows, currentPage);
             }
@@ -224,14 +240,24 @@ if (portfolioPage) {
               btns.forEach(item => item.classList.remove('activeBtn'));
               btns[currentPage - 1].classList.add('activeBtn');
 
-              if (currentPage > from && currentPage < to) {
-                btns[currentPage - (currentPage - countHideBtn++)].style.display = 'none';
-                btns[currentPage - 1].style.display = '';
+              if (!isClicked && currentPage > from && currentPage < to) {
+                btns[currentPage - (currentPage - countHideBtn++)].classList.add('hide');
+                btns[currentPage - 1].classList.remove('hide');
               }
 
               if (currentPage === to - 1) {
-                document.querySelector('.dotBtn').style.display = 'none';
-                btns[currentPage].style.display = '';
+                document.querySelector('.dotBtn').classList.add('hide');
+                btns[currentPage].classList.remove('hide');
+              }
+
+              if (isClicked && btns[currentPage].classList.contains(!'hide')) {
+                btns.forEach(item => item.classList.remove('activeBtn'));
+                btns[currentPage - 1].classList.add('activeBtn');
+              }
+
+              if (isClicked && btns[currentPage - 1].classList.contains('hide')) {
+                btns[currentPage - (currentPage - countHideBtn++)].classList.add('hide');
+                btns[currentPage - 1].classList.remove('hide');
               }
 
               displayList(items, postBlock, rows, currentPage);

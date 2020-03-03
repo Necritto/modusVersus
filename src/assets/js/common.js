@@ -154,6 +154,7 @@ if (portfolioPage) {
         let countHideBtn = 0;
         const portfolioPostPages = document.querySelector('.portfolio-post-pages');
         let isClicked = false;
+        let reverse = false;
 
         for (let i = 1; i < pageCount + 1; i++) {
           let button = document.createElement('button');
@@ -172,6 +173,11 @@ if (portfolioPage) {
           button.addEventListener('click', () => {
             currentPage = i;
             isClicked = true;
+            reverse = false;
+
+            if (i >= to) {
+              reverse = true;
+            }
 
             displayList(items, postBlock, rows, currentPage);
 
@@ -211,6 +217,7 @@ if (portfolioPage) {
 
               if (currentPage < from) {
                 countHideBtn = 0;
+                reverse = false;
               }
 
               if (isClicked && btns[currentPage].classList.contains(!'hide')) {
@@ -218,14 +225,15 @@ if (portfolioPage) {
                 btns[currentPage - 1].classList.add('activeBtn');
               }
 
-              if (isClicked && btns[currentPage - 1].classList.contains('hide')) {
+              if (isClicked && btns[currentPage - 1].classList.contains('hide') && !reverse) {
                 btns[currentPage + from - 1].classList.add('hide');
                 btns[currentPage - 1].classList.remove('hide');
               }
 
-              // {
-              //   Will add logic for processing page switching when clicking buttons after dots.
-              // }
+              if (reverse && btns[currentPage - 1].classList.contains('hide')) {
+                btns[currentPage].classList.add('hide');
+                btns[currentPage - 1].classList.remove('hide');
+              }
 
               displayList(items, postBlock, rows, currentPage);
             }

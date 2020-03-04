@@ -102,16 +102,17 @@ if (portfolioPage) {
   const postBlock = document.querySelector('.portfolio-post-block');
   const portfolioPages = document.querySelector('.portfolio-pages');
   let currentPage = 1;
-  let rows = 4;
+  const rows = 4;
   const posts = [];
   const btns = [];
+  const filterClasses = ['webDesign', 'logoDesign', 'photography', 'wordpress'];
 
   fetch('https://jsonplaceholder.typicode.com/posts')
     .then(response => response.json())
     .then(data => {
       for (let i = 0; i < data.length; i++) {
         const post = document.createElement('div');
-        post.classList.add('portfolio-post');
+        post.classList.add('portfolio-post', `${filterClasses[Math.floor(Math.random() * 4)]}`);
         post.innerHTML = `
           <div class="portfolio-img">
             <div class="withoutImg"><i class="far fa-image"></i></div>
@@ -132,25 +133,30 @@ if (portfolioPage) {
         posts.push(post);
       }
 
-      let displayList = (items, wrapper, rowsPerPage, page) => {
+      return posts;
+    })
+    .then(posts => {
+
+      const displayList = (items, wrapper, rowsPerPage, page) => {
         wrapper.innerHTML = '';
         page--;
 
-        let start = rowsPerPage * page;
-        let end = start + rowsPerPage;
-        let paginatedItems = items.slice(start, end);
+        const start = rowsPerPage * page;
+        const end = start + rowsPerPage;
+        const paginatedItems = items.slice(start, end);
 
         for (let i = 0; i < paginatedItems.length; i++) {
           postBlock.appendChild(paginatedItems[i]);
         }
       };
 
-      let setupPagination = (items, wrapper, rowsPerPage) => {
+      const setupPagination = (items, wrapper, rowsPerPage) => {
         wrapper.innerHTML = '';
 
-        let pageCount = Math.ceil(items.length / rowsPerPage);
-        const from = 5;
-        const to = pageCount - 3;
+        const pageCount = Math.ceil(items.length / rowsPerPage);
+        const from = 5; // design layout 
+        const to = pageCount - 3; // design layout 
+        const maxQuantityNavBtns = 9; // design layout 
         let countHideBtn = 0;
         const portfolioPostPages = document.querySelector('.portfolio-post-pages');
         let isClicked = false;
@@ -190,9 +196,11 @@ if (portfolioPage) {
           wrapper.appendChild(button);
         }
 
-        btns[btns.length - 3].insertAdjacentHTML('beforebegin',
-          '<button class="portfolio-pages__item dotBtn"><i class="fas fa-ellipsis-h"></i></button>'
-        );
+        btns.length > maxQuantityNavBtns
+          ? (btns[btns.length - 3].insertAdjacentHTML('beforebegin',
+            '<button class="portfolio-pages__item dotBtn"><i class="fas fa-ellipsis-h"></i></button>'
+          ))
+          : null;
 
         portfolioPostPages.addEventListener('click', (e) => {
           if (e.target === portfolioPostPages.firstElementChild
@@ -274,12 +282,36 @@ if (portfolioPage) {
         });
       };
 
-      displayList(posts, postBlock, rows, currentPage);
-      setupPagination(posts, portfolioPages, rows);
+      const filtred = posts => {
+        let filterClass = '';
+        let filtredPosts = [];
+
+        const portfolioBtns = document.querySelector('.portfolio-btns');
+        portfolioBtns.children[0].classList.add('activeBtn');
+
+        portfolioBtns.addEventListener('click', e => {
+          if (e.target.nodeName === 'BUTTON') {
+            [...portfolioBtns.children].forEach(item => item.classList.remove('activeBtn'));
+            e.target.classList.add('activeBtn');
+            filterClass = e.target.classList[1];
+          }
+        });
+
+        filtredPosts = posts.filter(cls => cls.classList.contains(`${filterClass}`));
+
+        if (!filterClass || filterClass === 'all') {
+          filtredPosts = posts;
+          return filtredPosts;
+        }
+
+        return filtredPosts;
+      }; // ?
+
+      setupPagination(filtred(posts), portfolioPages, rows);
+      displayList(filtred(posts), postBlock, rows, currentPage);
     })
     .catch((err) => {
       postBlock.innerHTML = '<h2 class="wrong">Something went wrong!</h2>';
       console.log(err);
     });
-
 }

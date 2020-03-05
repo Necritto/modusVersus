@@ -136,6 +136,22 @@ if (portfolioPage) {
       return posts;
     })
     .then(posts => {
+      let filterClass = '';
+      let filtredPosts = [];
+      const portfolioBtns = document.querySelector('.portfolio-btns'); //?
+      portfolioBtns.children[0].classList.add('activeBtn'); //?
+
+      const filteringPosts = posts => {
+
+        filtredPosts = posts.filter(cls => cls.classList.contains(`${filterClass}`));
+
+        if (!filterClass || filterClass === 'all') {
+          filtredPosts = posts;
+          return filtredPosts;
+        }
+
+        return filtredPosts;
+      };
 
       const displayList = (items, wrapper, rowsPerPage, page) => {
         wrapper.innerHTML = '';
@@ -282,33 +298,20 @@ if (portfolioPage) {
         });
       };
 
-      const filtred = posts => {
-        let filterClass = '';
-        let filtredPosts = [];
+      setupPagination(posts, portfolioPages, rows);
+      displayList(posts, postBlock, rows, currentPage);
 
-        const portfolioBtns = document.querySelector('.portfolio-btns');
-        portfolioBtns.children[0].classList.add('activeBtn');
-
-        portfolioBtns.addEventListener('click', e => {
-          if (e.target.nodeName === 'BUTTON') {
-            [...portfolioBtns.children].forEach(item => item.classList.remove('activeBtn'));
-            e.target.classList.add('activeBtn');
-            filterClass = e.target.classList[1];
-          }
-        });
-
-        filtredPosts = posts.filter(cls => cls.classList.contains(`${filterClass}`));
-
-        if (!filterClass || filterClass === 'all') {
-          filtredPosts = posts;
-          return filtredPosts;
+      portfolioBtns.addEventListener('click', e => {
+        if (e.target.nodeName === 'BUTTON') { //?
+          [...portfolioBtns.children].forEach(item => item.classList.remove('activeBtn'));
+          e.target.classList.add('activeBtn');
+          filterClass = e.target.classList[1];
+          filteringPosts(posts);
+          btns.length = 0; //?
+          setupPagination(filtredPosts, portfolioPages, rows);
+          displayList(filtredPosts, postBlock, rows, currentPage);
         }
-
-        return filtredPosts;
-      }; // ?
-
-      setupPagination(filtred(posts), portfolioPages, rows);
-      displayList(filtred(posts), postBlock, rows, currentPage);
+      });
     })
     .catch((err) => {
       postBlock.innerHTML = '<h2 class="wrong">Something went wrong!</h2>';

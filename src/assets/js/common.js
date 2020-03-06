@@ -136,10 +136,11 @@ if (portfolioPage) {
       return posts;
     })
     .then(posts => {
+      let pageCount = Math.ceil(posts.length / rows);
       let filterClass = '';
       let filtredPosts = [];
-      const portfolioBtns = document.querySelector('.portfolio-btns'); //?
-      portfolioBtns.children[0].classList.add('activeBtn'); //?
+      const portfolioBtns = document.querySelector('.portfolio-btns');
+      portfolioBtns.children[0].classList.add('activeBtn');
 
       const filteringPosts = posts => {
 
@@ -166,10 +167,9 @@ if (portfolioPage) {
         }
       };
 
-      const setupPagination = (items, wrapper, rowsPerPage) => {
+      const setupPagination = (items, wrapper) => {
         wrapper.innerHTML = '';
 
-        const pageCount = Math.ceil(items.length / rowsPerPage);
         const from = 5; // design layout 
         const to = pageCount - 3; // design layout 
         const maxQuantityNavBtns = 9; // design layout 
@@ -203,10 +203,8 @@ if (portfolioPage) {
 
             displayList(items, postBlock, rows, currentPage);
 
-            let currentBtn = document.querySelector('.activeBtn');
-            currentBtn.classList.remove('activeBtn');
-
-            button.classList.add('activeBtn');
+            btns.forEach(item => item.classList.remove('activeBtn'));
+            btns[currentPage - 1].classList.add('activeBtn');
           });
 
           wrapper.appendChild(button);
@@ -221,50 +219,55 @@ if (portfolioPage) {
         portfolioPostPages.addEventListener('click', (e) => {
           if (e.target === portfolioPostPages.firstElementChild
             || e.target === portfolioPostPages.firstElementChild.children[0]) {
+            e.stopImmediatePropagation();
 
             if (currentPage !== 1) {
+
               currentPage--;
-              countHideBtn--;
 
               btns.forEach(item => item.classList.remove('activeBtn'));
               btns[currentPage - 1].classList.add('activeBtn');
 
-              if (!isClicked && currentPage < to && currentPage >= from) {
-                btns[currentPage - from].classList.remove('hide');
-                btns[currentPage].classList.add('hide');
-              }
+              if (btns.length > maxQuantityNavBtns) {
+                countHideBtn--;
 
-              if (currentPage === to - 1) {
-                document.querySelector('.dotBtn').classList.remove('hide');
-                btns[currentPage].classList.add('hide');
-              }
+                if (!isClicked && currentPage < to && currentPage >= from) {
+                  btns[currentPage - from].classList.remove('hide');
+                  btns[currentPage].classList.add('hide');
+                }
 
-              if (currentPage < from) {
-                countHideBtn = 0;
-                reverse = false;
-              }
+                if (currentPage === to - 1) {
+                  document.querySelector('.dotBtn').classList.remove('hide');
+                  btns[currentPage].classList.add('hide');
+                }
 
-              if (isClicked && btns[currentPage].classList.contains(!'hide')) {
-                btns.forEach(item => item.classList.remove('activeBtn'));
-                btns[currentPage - 1].classList.add('activeBtn');
-              }
+                if (currentPage < from) {
+                  countHideBtn = 0;
+                  reverse = false;
+                }
 
-              if (isClicked && btns[currentPage - 1].classList.contains('hide') && !reverse) {
-                btns[currentPage + from - 1].classList.add('hide');
-                btns[currentPage - 1].classList.remove('hide');
-              }
+                if (isClicked && btns[currentPage].classList.contains(!'hide')) {
+                  btns.forEach(item => item.classList.remove('activeBtn'));
+                  btns[currentPage - 1].classList.add('activeBtn');
+                }
 
-              if (reverse && btns[currentPage - 1].classList.contains('hide')) {
-                btns[currentPage].classList.add('hide');
-                btns[currentPage - 1].classList.remove('hide');
-              }
+                if (isClicked && btns[currentPage - 1].classList.contains('hide') && !reverse) {
+                  btns[currentPage + from - 1].classList.add('hide');
+                  btns[currentPage - 1].classList.remove('hide');
+                }
 
+                if (reverse && btns[currentPage - 1].classList.contains('hide')) {
+                  btns[currentPage].classList.add('hide');
+                  btns[currentPage - 1].classList.remove('hide');
+                }
+              }
               displayList(items, postBlock, rows, currentPage);
             }
           }
 
           if (e.target === portfolioPostPages.lastElementChild
             || e.target === portfolioPostPages.lastElementChild.children[0]) {
+            e.stopImmediatePropagation();
 
             if (currentPage !== pageCount) {
               currentPage++;
@@ -272,42 +275,47 @@ if (portfolioPage) {
               btns.forEach(item => item.classList.remove('activeBtn'));
               btns[currentPage - 1].classList.add('activeBtn');
 
-              if (!isClicked && currentPage > from && currentPage < to) {
-                btns[currentPage - (currentPage - countHideBtn++)].classList.add('hide');
-                btns[currentPage - 1].classList.remove('hide');
-              }
+              if (btns.length > maxQuantityNavBtns) {
+                if (!isClicked && currentPage > from && currentPage < to) {
+                  btns[currentPage - (currentPage - countHideBtn++)].classList.add('hide');
+                  btns[currentPage - 1].classList.remove('hide');
+                }
 
-              if (currentPage === to - 1) {
-                document.querySelector('.dotBtn').classList.add('hide');
-                btns[currentPage].classList.remove('hide');
-              }
+                if (currentPage === to - 1) {
+                  document.querySelector('.dotBtn').classList.add('hide');
+                  btns[currentPage].classList.remove('hide');
+                }
 
-              if (isClicked && btns[currentPage].classList.contains(!'hide')) {
-                btns.forEach(item => item.classList.remove('activeBtn'));
-                btns[currentPage - 1].classList.add('activeBtn');
-              }
+                if (isClicked && btns[currentPage].classList.contains(!'hide')) {
+                  btns.forEach(item => item.classList.remove('activeBtn'));
+                  btns[currentPage - 1].classList.add('activeBtn');
+                }
 
-              if (isClicked && btns[currentPage - 1].classList.contains('hide')) {
-                btns[currentPage - (currentPage - countHideBtn++)].classList.add('hide');
-                btns[currentPage - 1].classList.remove('hide');
+                if (isClicked && btns[currentPage - 1].classList.contains('hide')) {
+                  btns[currentPage - (currentPage - countHideBtn++)].classList.add('hide');
+                  btns[currentPage - 1].classList.remove('hide');
+                }
               }
-
               displayList(items, postBlock, rows, currentPage);
             }
           }
         });
       };
 
-      setupPagination(posts, portfolioPages, rows);
-      displayList(posts, postBlock, rows, currentPage);
+      if (!filtredPosts.length) {
+        setupPagination(posts, portfolioPages, rows);
+        displayList(posts, postBlock, rows, currentPage);
+      }
 
       portfolioBtns.addEventListener('click', e => {
-        if (e.target.nodeName === 'BUTTON') { //?
+        if (e.target.classList.contains('portfolio-btn__item')) {
           [...portfolioBtns.children].forEach(item => item.classList.remove('activeBtn'));
           e.target.classList.add('activeBtn');
           filterClass = e.target.classList[1];
           filteringPosts(posts);
-          btns.length = 0; //?
+          btns.length = 0;
+          currentPage = 1;
+          pageCount = Math.ceil(filtredPosts.length / rows);
           setupPagination(filtredPosts, portfolioPages, rows);
           displayList(filtredPosts, postBlock, rows, currentPage);
         }

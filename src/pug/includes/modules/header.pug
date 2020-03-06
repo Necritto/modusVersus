@@ -6,7 +6,7 @@ header.header
         ul.navBar__item.topmenu
           for item in [{name: 'Home', href: './index.html'}, {name: 'About', href: './about.html'}, {name: 'Portfolio'}, {name: 'Blog'}, {name: 'Features'}, {name: 'Contacts'}]
             if (item.name === 'Portfolio')
-              +portfolio('#', 'Portfolio')
+              +portfolio('Portfolio')
             else
               +navLink(item.href, item.name)
       .search

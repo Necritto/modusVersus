@@ -8,31 +8,31 @@
   transform: translateY(-23px);
 }
 
-.about-us {
+.pageTitle {
   background-color: #ececec;
   position: relative;
 }
 
-.about-wrap {
+.pageTitle-wrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
   max-height: 80px;
 }
 
-.about-us__item {
+.pageTitle-us__item {
   color: #7f8c8c;
   padding: 30px 0;
 }
 
-.about-us__title {
+.pageTitle-us__title {
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
   text-transform: uppercase;
 }
 
-.about-us__path {
+.pageTitle-us__path {
   font-size: 12px;
   line-height: 14.4px;
 }

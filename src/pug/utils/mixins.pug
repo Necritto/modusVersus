@@ -2,7 +2,7 @@ mixin navLink(link, name)
   li.navBar__item-li
     a(href=link).nav__item-link=name
 
-mixin portfolio(link, name)
+mixin portfolio(name)
   li.navBar__item-li
     a(href=link)=name
       i.fa.fa-angle-down
@@ -10,15 +10,15 @@ mixin portfolio(link, name)
       li
         span
           i.fas.fa-angle-right
-          a(href=link) #{name} 1 column page
+          a(href="./portfolio1col.html") #{name} 1 column page
       li
         span
           i.fas.fa-angle-right
-          a(href=link) #{name} 2 column page
+          a(href="./portfolio2col.html") #{name} 2 column page
       li
         span
           i.fas.fa-angle-right
-          a(href=link) #{name} 3 column page
+          a(href="./portfolio3col.html") #{name} 3 column page
 
 mixin card(icon, header, descr)
   .card-wrap
@@ -29,7 +29,7 @@ mixin card(icon, header, descr)
         =header
       p.card__descr
         =descr
-    button.card__btn read more
+    button.card__btn.btn read more
 
 mixin whyImg(url)
   .why-wrap
@@ -63,3 +63,29 @@ mixin post(text, date)
     .post__item
       p.post__descr=text
       span=date
+
+mixin pageTitle(text)
+  section.pageTitle
+    .container
+      .pageTitle-wrap
+        h1.pageTitle-us__item.pageTitle-us__title=text
+        p.pageTitle-us__item.pageTitle-us__path Home&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;#[=text]
+      .triangle
+
+mixin portfolioPost(img, h3, p, link)
+  .portfolio-post
+    .portfolio-img
+      if (img)
+        img(class="portfolio-post__img" src=img)
+      else
+        .withoutImg
+          i.far.fa-image
+    .portfolio-post-main
+      h3.portfolio-post__item.portfolio-post__header=h3
+      p.portfolio-post__item.portfolio-post__descr=p
+      .portfolio-post-footer
+        .portfolio-post-address
+          a(href=link class="portfolio-post__link" target="_blank")=link
+            .chain-bg
+              i.fas.fa-link
+        button.btn.portfolio-post-btn View&nbsp;details

@@ -106,6 +106,22 @@ if (portfolioPage) {
   const posts = [];
   const btns = [];
   const filterClasses = ['webDesign', 'logoDesign', 'photography', 'wordpress'];
+  let isLoad = false;
+
+  const loader = () => {
+    postBlock.innerHTML = `
+      <div class="loader-position">
+        <div class="loader-ripple">
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    `;
+  };
+
+  if (!isLoad) {
+    loader();
+  }
 
   fetch('https://jsonplaceholder.typicode.com/posts')
     .then(response => response.json())
@@ -141,6 +157,8 @@ if (portfolioPage) {
       let filtredPosts = [];
       const portfolioBtns = document.querySelector('.portfolio-btns');
       portfolioBtns.children[0].classList.add('activeBtn');
+
+      isLoad = true;
 
       const filteringPosts = posts => {
 

@@ -102,11 +102,13 @@ if (portfolioPage) {
   const postBlock = document.querySelector('.portfolio-post-block');
   const portfolioPages = document.querySelector('.portfolio-pages');
   let currentPage = 1;
-  const rows = 4;
+  let rows;
   const posts = [];
   const btns = [];
   const filterClasses = ['webDesign', 'logoDesign', 'photography', 'wordpress'];
   let isLoad = false;
+  const portfolioPage1col = document.querySelector('.portfolio1-page');
+  const portfolioPage2col = document.querySelector('.portfolio2-page');
 
   const loader = () => {
     postBlock.innerHTML = `
@@ -129,24 +131,39 @@ if (portfolioPage) {
       for (let i = 0; i < data.length; i++) {
         const post = document.createElement('div');
         post.classList.add('portfolio-post', `${filterClasses[Math.floor(Math.random() * 4)]}`);
-        post.innerHTML = `
-          <div class="portfolio-img">
-            <div class="withoutImg"><i class="far fa-image"></i></div>
+
+        if (portfolioPage1col) {
+          rows = 4;
+          post.innerHTML = `
+            <div class="portfolio-img">
+              <div class="withoutImg"><i class="far fa-image"></i></div>
             </div >
-          <div class="portfolio-post-main">
-            <h3 class="portfolio-post__item portfolio-post__header">${data[i].title}.</h3>
-            <p class="portfolio-post__item portfolio-post__descr">${data[i].body}.</p>
-            <div class="portfolio-post-footer">
-              <div class="portfolio-post-address">
-                <a class="portfolio-post__link" target="_blank">www.project.dom
+            <div class="portfolio-post-main">
+              <h3 class="portfolio-post__item portfolio-post__header">${data[i].title}.</h3>
+              <p class="portfolio-post__item portfolio-post__descr">${data[i].body}.</p>
+              <div class="portfolio-post-footer">
+                <div class="portfolio-post-address">
+                  <a class="portfolio-post__link" target="_blank" href="www.project.dom">www.project.dom
                     <div class="chain-bg"><i class="fas fa-link"></i></div>
-                </a>
+                  </a>
+                </div>
+                <button class="btn portfolio-post-btn">View&nbsp;details</button>
               </div>
-              <button class="btn portfolio-post-btn">View&nbsp;details</button>
             </div>
-          </div>
-        `;
-        posts.push(post);
+          `;
+          posts.push(post);
+        }
+
+        if (portfolioPage2col) {
+          postBlock.classList.add('portfolio2col-wrapper');
+          rows = 8;
+          post.innerHTML = `
+            <div class="portfolio-img">
+              <div class="withoutImg"><i class="far fa-image"></i></div>
+            </div >
+          `;
+          posts.push(post);
+        }
       }
 
       return posts;

@@ -69,7 +69,7 @@
     i {
       color: #ececec;
       font-size: 100px;
-      padding: 90px 230px;
+      padding: 85px 235px;
     }
   }
 
@@ -113,31 +113,34 @@
         color: #e8645a;
       }
     }
+  }
 
-    .chain-bg {
-      width: 40px;
-      height: 40px;
-      background-color: #528b86;
-      margin-right: 25px;
-      border-radius: 6px;
-      @extend %center;
+  .chain-bg {
+    width: 40px;
+    height: 40px;
+    background-color: #528b86;
+    margin-right: 25px;
+    border-radius: 6px;
+    @extend %center;
 
-      i {
-        font-size: 25px;
-        color: #ffffff;
-        transform: rotate(90deg);
-      }
+    i {
+      font-size: 25px;
+      color: #ffffff;
     }
 
-    .portfolio-post__link {
-      color: #7f8c8c;
-      font-size: 20px;
-      font-weight: 700;
-      line-height: 24px;
-      text-decoration: none;
-      @extend %center;
-      flex-direction: row-reverse;
+    .fa-link {
+      transform: rotate(90deg);
     }
+  }
+
+  .portfolio-post__link {
+    color: #7f8c8c;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    text-decoration: none;
+    @extend %center;
+    flex-direction: row-reverse;
   }
 
   .portfolio-post-btn {
@@ -245,4 +248,51 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  .portfolio-post {
+    &:hover {
+      .portfolio-post__front {
+        display: none;
+      }
+
+      .portfolio-post__back {
+        display: block;
+      }
+    }
+  }
+}
+
+.portfolio-post__front,
+.portfolio-post__back {
+  max-width: 570px;
+  max-height: 270px;
+}
+
+.portfolio-post__back {
+  display: none;
+  background: #83ccc6;
+  border-radius: 10px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-post__back-refs {
+  display: flex;
+  padding: 110px 240px 60px 240px;
+
+  .chain-bg {
+    background: #76b8b2;
+    margin-right: 10px;
+
+    &:hover {
+      background-color: #e8645a;
+    }
+  }
+}
+
+.portfolio-post__back-descr {
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 28.8px;
+  text-align: center;
+  padding-bottom: 40px;
 }

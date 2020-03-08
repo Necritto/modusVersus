@@ -158,9 +158,24 @@ if (portfolioPage) {
           postBlock.classList.add('portfolio2col-wrapper');
           rows = 8;
           post.innerHTML = `
-            <div class="portfolio-img">
-              <div class="withoutImg"><i class="far fa-image"></i></div>
-            </div >
+            <div class="portfolio-post__front">
+              <div class="portfolio-img">
+                <div class="withoutImg">
+                  <i class="far fa-image"></i>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-post__back">
+              <div class="portfolio-post__back-refs">
+                <a class="portfolio-post__link" target="_blank" href="http://localhost:8085/portfolio2col.html">
+                  <div class="chain-bg"><i class="far fa-eye"></i></div>
+                </a>
+                <a class="portfolio-post__link" target="_blank" href="www.project.dom">
+                  <div class="chain-bg"><i class="fas fa-link"></i></div>
+                </a>
+              </div>
+              <p class="portfolio-post__back-descr">Lorem ipsum</p>
+            </div>
           `;
           posts.push(post);
         }

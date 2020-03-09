@@ -109,6 +109,7 @@ if (portfolioPage) {
   let isLoad = false;
   const portfolioPage1col = document.querySelector('.portfolio1-page');
   const portfolioPage2col = document.querySelector('.portfolio2-page');
+  const portfolioPage3col = document.querySelector('.portfolio3-page');
 
   const loader = () => {
     postBlock.innerHTML = `
@@ -154,9 +155,17 @@ if (portfolioPage) {
           posts.push(post);
         }
 
-        if (portfolioPage2col) {
-          postBlock.classList.add('portfolio2col-wrapper');
-          rows = 8;
+        if (portfolioPage2col || portfolioPage3col) {
+          if (portfolioPage2col) {
+            postBlock.classList.add('portfolio2col-wrapper');
+            rows = 8;
+          }
+
+          if (portfolioPage3col) {
+            postBlock.classList.add('portfolio3col-wrapper');
+            rows = 12;
+          }
+
           post.innerHTML = `
             <div class="portfolio-post__front">
               <div class="portfolio-img">

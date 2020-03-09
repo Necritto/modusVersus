@@ -244,7 +244,8 @@
   }
 }
 
-.portfolio2col-wrapper {
+.portfolio2col-wrapper,
+.portfolio3col-wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -295,4 +296,17 @@
   line-height: 28.8px;
   text-align: center;
   padding-bottom: 40px;
+}
+
+.portfolio3col-wrapper {
+  .withoutImg {
+    i {
+      padding: 85px 140px;
+    }
+  }
+
+  .portfolio-post__back-refs {
+    display: flex;
+    padding: 110px 140px 60px 140px;
+  }
 }

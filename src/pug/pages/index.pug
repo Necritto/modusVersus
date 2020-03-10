@@ -3,36 +3,17 @@ extends ../layout/main
 block variables
   - var title = 'MODUS versus';
   - var pageClass = 'index-page';
+  -
+    var slider = [
+      {h1: 'Modus', p: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae, nesciunt!'},
+      {h1: 'Vestibulum', p: 'Maecenas tincidunt, augue et rutrum condimentum, libero lectus mattis orci, ut commodo.'},
+      {h1: 'Versus', p: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Atque itaque assumenda reprehenderit ab necessitatibus delectus est rem doloremque 
+        tenetur iure, unde rerum debitis, consequuntur minima.`}
+      ];
 
 block content
-  .header__slider
-    .header__wrap
-      .slider__arrow.angle-left
-        i.fas.fa-angle-double-left
-      .slider__content
-        .slider__content-inner.hide
-          .head-wrap
-            h1.slider-header Modus
-          .descr-wrap
-            p.slider-description Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae, nesciunt!
-        .slider__content-inner.show
-          .head-wrap
-            h1.slider-header Vestibulum
-          .descr-wrap
-            p.slider-description Maecenas tincidunt, augue et rutrum condimentum, libero lectus mattis orci, ut commodo.
-        .slider__content-inner.hide
-          .head-wrap
-            h1.slider-header Versus
-          .descr-wrap
-            p.slider-description Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              | Atque itaque assumenda reprehenderit ab necessitatibus delectus est rem doloremque 
-              | tenetur iure, unde rerum debitis, consequuntur minima.
-      .slider__arrow.angle-right
-        i.fas.fa-angle-double-right
-    .header__border
-      .border
-      .border.border-active
-      .border
+  +slider(slider[0].h1, slider[0].p, slider[1].h1, slider[1].p, slider[2].h1, slider[2].p)
   section.service
     .container
       .top-services

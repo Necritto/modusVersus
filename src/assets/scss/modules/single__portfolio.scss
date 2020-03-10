@@ -1,0 +1,36 @@
+.singlePortfolio-main {
+  transform: translateY(-23px);
+
+  .header__slider {
+    background-color: #f8f8f8;
+    margin-bottom: 80px;
+
+    .fa-image {
+      color: #ececec;
+      font-size: 100px;
+    }
+  }
+}
+
+.singlePortfolio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 60px 0;
+
+  h2 {
+    color: #7f8c8c;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30px;
+  }
+
+  .prev-btn,
+  .next-btn {
+    margin: 0;
+  }
+
+  .prev-btn {
+    margin-right: 20px;
+  }
+}

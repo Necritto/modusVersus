@@ -1,0 +1,54 @@
+extends ../layout/main
+
+block variables
+  - var title = 'MODUS versus';
+  - var pageClass = 'singlePortfolioPage';
+
+block content
+  main.singlePortfolio-main
+    +pageTitle('Portfolio')
+    .container
+      .singlePortfolio-header
+        h2 Donec faucibus ultricies congue
+        .singlePortfolio-btns
+          .portfolio-post-pages
+            button.prev-btn #[i.fas.fa-angle-left]
+            button.next-btn #[i.fas.fa-angle-right]
+      +slider()
+      .singlePortfolio-project
+        .project-descr
+          h3 Project Description
+          p Maecenas eget turpis turpis. Nunc vel metus augue. 
+            | Aenean euismod cursus ligula eget dapibus. 
+            | Praesent vel erat in tortor placerat dignissim.
+          p Duis dapibus aliquam mi, eget euismod sem scelerisque ut. 
+            |  Vivamus at elit quis urna adipiscing iaculis. 
+            |  Curabitur vitae velit in neque dictum blandit. 
+            |  Proin in iaculis neque. 
+            |  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac 
+            |  turpis egestas. Eget euismod sem scelerisque ut. 
+            |  Vivamus at elit quis urna adipiscing iaculis. 
+            |  Curabitur vitae velit in neque dictum blandit. 
+            |  Proin in iaculis neque. Pellentesque habitant morbi tristique
+            |  senectus et netus et malesuada fames ac turpis egestas.
+        .project-details
+          table
+            caption Project Details
+            tbody
+              tr
+                td #[i.fas.fa-calendar-alt]
+                td Release date
+                td 26 May 2013
+              tr
+                td #[i.fas.fa-cogs]
+                td Technologies
+                td HTML/CSS&shy;WORDRPESS
+              tr
+                td #[i.fas.fa-user]
+                td Client
+                td MightyDeals.
+              tr
+                td #[i.fas.fa-link]
+                td Project url
+                td VIEW PROJECT
+

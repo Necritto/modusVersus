@@ -69,7 +69,7 @@ document.querySelector('.submenu').parentElement.addEventListener('click', () =>
 });
 
 // Clients slider
-if (indexPage || aboutPage) {
+if (indexPage || aboutPage || singlePage) {
   const slider = document.querySelector('.clients-slider');
   const prev = document.querySelector('.btn-left');
   const next = document.querySelector('.btn-right');

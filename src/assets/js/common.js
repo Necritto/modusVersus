@@ -1,8 +1,9 @@
 const indexPage = document.querySelector('.index-page');
 const aboutPage = document.querySelector('.about-page');
 const portfolioPage = document.querySelector('.portfolioPage');
+const singlePage = document.querySelector('.singlePortfolioPage');
 
-if (indexPage) {
+if (indexPage || singlePage) {
 
   // Slider
 
@@ -41,6 +42,10 @@ if (indexPage) {
     });
   }
 
+}
+
+if (indexPage) {
+
   // Why-slider
 
   {
@@ -64,7 +69,7 @@ document.querySelector('.submenu').parentElement.addEventListener('click', () =>
 });
 
 // Clients slider
-if (indexPage || aboutPage) {
+if (indexPage || aboutPage || singlePage) {
   const slider = document.querySelector('.clients-slider');
   const prev = document.querySelector('.btn-left');
   const next = document.querySelector('.btn-right');
@@ -148,7 +153,7 @@ if (portfolioPage) {
                     <div class="chain-bg"><i class="fas fa-link"></i></div>
                   </a>
                 </div>
-                <button class="btn portfolio-post-btn">View&nbsp;details</button>
+                <a target="_blank" href="../singlePortfolio.html" class="btn portfolio-post-btn">View&nbsp;details</a>
               </div>
             </div>
           `;
@@ -176,7 +181,7 @@ if (portfolioPage) {
             </div>
             <div class="portfolio-post__back">
               <div class="portfolio-post__back-refs">
-                <a class="portfolio-post__link" target="_blank" href="http://localhost:8085/portfolio2col.html">
+                <a class="portfolio-post__link" target="_blank" href="../singlePortfolio.html">
                   <div class="chain-bg"><i class="far fa-eye"></i></div>
                 </a>
                 <a class="portfolio-post__link" target="_blank" href="www.project.dom">

@@ -128,3 +128,47 @@ mixin slider(h1, p1, h2, p2, h3, p3)
       .border
       .border.border-active
       .border
+
+mixin carousel(title, sp)
+  section.clients
+    .container
+      .clients-header
+        h3.clients-header__head=title
+        .line
+          svg
+            g
+              circle(cx=5 cy=5 r=5)
+              line(x1=0 y1=0 x2=880 y2=0)
+        .clients-buttons
+          button.clients__btn.btn-left
+            i.fas.fa-angle-left
+          button.clients__btn.btn-right
+            i.fas.fa-angle-right
+      .carousel
+        if !sp
+          .clients-slider
+            - var q = 0;
+            while q < 6
+              .slide
+                img(src="../../../assets/img/client.png" alt="client" class="slide-single")
+              -q++
+        else
+          .clients-slider
+            - var w = 0;
+              while w < 4
+                .slide
+                  .portfolio-post
+                    .portfolio-post__front
+                      .portfolio-img
+                        .withoutImg
+                          i.far.fa-image
+                    .portfolio-post__back
+                      .portfolio-post__back-refs
+                        a(class="portfolio-post__link" target="_blank" href="/")
+                          .chain-bg
+                            i.far.fa-eye
+                        a(class="portfolio-post__link" target="_blank" href="/")
+                          .chain-bg
+                            i.fas.fa-link
+                      p.portfolio-post__back-descr Lorem ipsum
+                -w++

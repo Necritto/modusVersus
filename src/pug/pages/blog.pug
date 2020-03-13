@@ -60,20 +60,23 @@ block content
               a(href="#") Continue reading #[i.fas.fa-arrow-right]
               //- Other post types I'll make later
         aside.blog-aside
-          ul.blog__categories Categories
+          p #[strong Categories]
+          ul.blog__categories
             for item in categories
               li(class=item.class) #[a(href='#') #[i.fas.fa-arrow-circle-right] #{item.name}]
-          ul.blog__recent Recent Posts
+          p #[strong Recent Posts]
+          ul.blog__recent
             for item in recentPosts
-              li #[a(href='#') #[i.fas.fa-angle-right] #{item.title}]
-                span #{item.date}
+              li #[span #[i.fas.fa-angle-right]#[a(href='#') #{item.title}]]
+                p #{item.date}
           .blog__tags
-            h3 Tags
+            h3 #[strong Tags]
             .tags-btns
               while count < 3
                 for item in tags
                   button(class=item.class) #{item.value}
                 -count++
-            ul.blog__archive Archive
-              for item in archive
-                li(class=item.class) #[a(href='#') #[i.fas.fa-arrow-circle-right] #{item.year}]
+          p #[strong Archive]
+          ul.blog__archive
+            for item in archive
+              li(class=item.class) #[a(href='#') #[i.fas.fa-arrow-circle-right] #{item.year}]

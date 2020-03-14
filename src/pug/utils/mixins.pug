@@ -172,3 +172,30 @@ mixin carousel(title, sp)
                             i.fas.fa-link
                       p.portfolio-post__back-descr Lorem ipsum
                 -w++
+
+mixin docsBlogPost(month, day,  h3, p)
+  .blog-datatype
+    .blog__date
+      p=month
+      span=day
+    .blog__type
+      i.far.fa-file-alt
+  .blog-post
+    .withoutImg
+      i.far.fa-image
+    h3=h3
+    p Posted by #[span Admin] in #[span Wordpress] #[span #[i.fas.fa-tags] Design, Template] #[span #[i.fas.fa-comments] 22]
+    p=p
+    a(href="../singleBlogPage.html" target="_blank") Continue reading #[i.fas.fa-arrow-right]
+
+mixin imageBlogPost(month, day,  h3)
+  .blog-datatype
+    .blog__date
+      p=month
+      span=day
+    .blog__type
+      i.far.fa-image
+  .blog-post
+    +slider()
+    h3=h3
+    p Posted by #[span Admin] in #[span Photography] #[span #[i.fas.fa-tags] Photo] #[span #[i.fas.fa-comments] 22]

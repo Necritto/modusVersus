@@ -2,8 +2,9 @@ const indexPage = document.querySelector('.index-page');
 const aboutPage = document.querySelector('.about-page');
 const portfolioPage = document.querySelector('.portfolioPage');
 const singlePage = document.querySelector('.singlePortfolioPage');
+const blogPage = document.querySelector('.blog-page');
 
-if (indexPage || singlePage) {
+if (indexPage || singlePage || blogPage) {
 
   // Slider
 

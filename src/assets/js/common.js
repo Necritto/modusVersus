@@ -391,3 +391,55 @@ if (portfolioPage) {
       console.log(err);
     });
 }
+
+if (blogPage) {
+
+  // Video player
+
+  const playBtn = blogPage.querySelector('.togglePlay');
+  const pauseBtn = blogPage.querySelector('.togglePause');
+  const volume = blogPage.querySelector('.volume');
+  const video = blogPage.querySelector('#video-player');
+  const progress = blogPage.querySelector('progress');
+  const expand = blogPage.querySelector('.expand');
+
+  playBtn.addEventListener('click', () => {
+    video.play();
+  });
+
+  pauseBtn.addEventListener('click', () => {
+    video.pause();
+  });
+
+  volume.addEventListener('input', () => {
+    video.volume = volume.value / 100;
+  });
+
+  video.addEventListener('timeupdate', () => {
+    let duration = video.duration;
+    let currentTime = video.currentTime;
+
+    progress.value = currentTime / duration * 100;
+  });
+
+  progress.addEventListener('click', (e) => {
+    let progressWidth = progress.offsetWidth;
+    let currentWidth = e.offsetX;
+
+    progress.value = currentWidth / progressWidth * 100;
+    video.pause();
+    video.currentTime = video.duration * (currentWidth / progressWidth);
+    video.play();
+  });
+
+  expand.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      video.requestFullscreen()
+        .catch(err => {
+          alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+        });
+    } else {
+      document.exitFullscreen();
+    }
+  });
+}

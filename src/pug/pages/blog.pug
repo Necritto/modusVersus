@@ -48,14 +48,10 @@ block content
                   source(src="../../assets/video/skeletor.webm" type="video/webm")
                   source(src="../../assets/video/skeletor.ogv" type="video/ogg")
                 .controls
-                  .progress
-                    progress(max="100" value="0")
-                    p #[span 0] / #[span 0]
-                  .control__items
-                    button.togglePlay #[i.fas.fa-play]
-                    button.togglePause #[i.fas.fa-pause]
-                    input(type="range" min=0 max=100).volume
-                    button.expand #[i.fas.fa-expand-alt]
+                  button.togglePlay.paused #[i.fas.fa-play]
+                  progress(max="100" value="0")
+                  p #[span.currentTimestamp 00:00] / #[span.entireDuration 00:00]
+                  button.expand #[i.fas.fa-expand-alt]
               h3 Duis dapibus aliquam mi, eget euismod sem scelerisque ut.
               p Posted by #[span Admin] in #[span Video] #[span #[i.fas.fa-tags] Nature] #[span #[i.fas.fa-comments] 22]
         include ../includes/modules/blog-aside

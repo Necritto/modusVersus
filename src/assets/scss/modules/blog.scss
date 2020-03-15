@@ -264,3 +264,69 @@
     }
   }
 }
+
+.video-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 730px;
+  width: 100%;
+  background-color: #f8f8f8;
+  margin-bottom: 30px;
+  @extend %shadow;
+
+  video {
+    max-width: 730px;
+  }
+}
+
+.controls {
+  max-height: 50px;
+  padding: 20px 15px;
+  background-color: #7f8c8c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+
+  button {
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: #f8f8f8;
+    font-size: 24px;
+  }
+
+  p,
+  span {
+    color: #cecfcf;
+    font-size: 15px;
+    margin: 0;
+  }
+
+  .currentTimestamp {
+    color: #ffffff;
+  }
+
+  progress {
+    max-width: 430px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #5d6666;
+
+    &[value] {
+      appearance: none;
+      border: none;
+      color: #e2534b;
+
+      &::-moz-progress-bar {
+        background-color: #e2534b;
+        border-radius: 10px;
+      }
+
+      &::-webkit-progress-value {
+        background-color: #e2534b;
+        border-radius: 10px;
+      }
+    }
+  }
+}

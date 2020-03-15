@@ -173,7 +173,7 @@ mixin carousel(title, sp)
                       p.portfolio-post__back-descr Lorem ipsum
                 -w++
 
-mixin docsBlogPost(month, day,  h3, p)
+mixin docsBlogPost(month, day, h3, p)
   .blog-datatype
     .blog__date
       p=month
@@ -188,7 +188,7 @@ mixin docsBlogPost(month, day,  h3, p)
     p=p
     a(href="../singleBlogPage.html" target="_blank") Continue reading #[i.fas.fa-arrow-right]
 
-mixin imageBlogPost(month, day,  h3)
+mixin imageBlogPost(month, day, h3)
   .blog-datatype
     .blog__date
       p=month
@@ -199,3 +199,36 @@ mixin imageBlogPost(month, day,  h3)
     +slider()
     h3=h3
     p Posted by #[span Admin] in #[span Photography] #[span #[i.fas.fa-tags] Photo] #[span #[i.fas.fa-comments] 22]
+
+mixin videoBlogPost(month, day, src, h3)
+  .blog-datatype
+    .blog__date
+      p=month
+      span=day
+    .blog__type
+      i.fas.fa-film
+  .blog-post
+    .video-container
+      video(id="video-player" poster="../../assets/img/poster.png")
+        source(src=`../../assets/video/${src}.mp4` type="video/mp4")
+        source(src=`../../assets/video/${src}.webm` type="video/webm")
+        source(src=`../../assets/video/${src}.ogv` type="video/ogg")
+      .controls
+        button.togglePlay.paused #[i.fas.fa-play]
+        progress(max="100" value="0")
+        p #[span.currentTimestamp 00:00]&emsp;/&emsp;#[span.entireDuration 00:00]
+        button.expand #[i.fas.fa-expand-alt]
+    h3=h3
+    p Posted by #[span Admin] in #[span Video] #[span #[i.fas.fa-tags] Nature] #[span #[i.fas.fa-comments] 22]
+
+mixin quoteBlogPost(month, day, h3, quote)
+  .blog-datatype
+    .blog__date
+      p=month
+      span=day
+    .blog__type
+      i.fas.fa-quote-right
+  .blog-post
+    h3=h3
+    p Posted by #[span Admin] in #[span Video] #[span #[i.fas.fa-tags] Nature] #[span #[i.fas.fa-comments] 22]
+    blockquote=quote

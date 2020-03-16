@@ -394,72 +394,103 @@ if (portfolioPage) {
 
 if (blogPage) {
 
-  // Video player
+  // Controls
 
-  const playBtn = blogPage.querySelector('.togglePlay');
-  const video = blogPage.querySelector('#video-player');
-  const progress = blogPage.querySelector('progress');
-  const expand = blogPage.querySelector('.expand');
-  const currentTimestamp = blogPage.querySelector('.currentTimestamp');
-  const entireDuration = blogPage.querySelector('.entireDuration');
-
-  const togglePlay = () => {
-    (playBtn.classList.contains('paused')) ? video.play() : video.pause();
+  const togglePlay = (playBtn, mediaElem) => {
+    (playBtn.classList.contains('paused')) ? mediaElem.play() : mediaElem.pause();
   };
 
-  document.addEventListener('DOMContentLoaded', () => {
-    entireDuration.innerHTML = formatTime(video.duration);
-    currentTimestamp.innerHTML = formatTime(0);
-  });
-
-  playBtn.addEventListener('click', () => {
-    togglePlay();
-  });
-
-  video.addEventListener('click', () => {
-    togglePlay();
-  });
-
-  video.addEventListener('dblclick', () => {
-    fullscreen(video);
-  });
-
-  video.addEventListener('ended', () => {
-    video.pause();
-    playBtn.innerHTML = '<i class="fas fa-play"></i>';
-  });
-
-  video.addEventListener('play', () => {
+  const playMedia = (playBtn) => {
     playBtn.innerHTML = '<i class="fas fa-pause"></i>';
     playBtn.classList.toggle('paused');
-  });
+  };
 
-  video.addEventListener('pause', () => {
+  const pauseMedia = (playBtn) => {
     playBtn.innerHTML = '<i class="fas fa-play"></i>';
     playBtn.classList.toggle('paused');
-  });
+  };
 
-  video.addEventListener('timeupdate', () => {
-    let duration = video.duration;
-    let currentTime = video.currentTime;
+  const endedMedia = (playBtn, mediaElem) => {
+    mediaElem.pause();
+    playBtn.innerHTML = '<i class="fas fa-play"></i>';
+  };
 
-    progress.value = currentTime / duration * 100;
+  const timeupdateMedia = (mediaElem, progressElem, currentTimestamp) => {
+    let duration = mediaElem.duration;
+    let currentTime = mediaElem.currentTime;
+
+    progressElem.value = currentTime / duration * 100;
 
     currentTimestamp.textContent = formatTime(currentTime);
+  };
+
+  const progressMedia = (event, progressElem, mediaElem) => {
+    let progressWidth = progressElem.offsetWidth;
+    let currentWidth = event.offsetX;
+
+    progressElem.value = currentWidth / progressWidth * 100;
+    mediaElem.pause();
+    mediaElem.currentTime = mediaElem.duration * (currentWidth / progressWidth);
+    mediaElem.play();
+  };
+
+  const timestampMedia = (entireDuration, currentTimestamp, mediaElem) => {
+    entireDuration.innerHTML = formatTime(mediaElem.duration);
+    currentTimestamp.innerHTML = formatTime(0);
+  };
+
+  // Video player
+
+  const videoPlayBtn = blogPage.querySelector('.video .togglePlay');
+  const video = blogPage.querySelector('#video-player');
+  const videoProgress = blogPage.querySelector('.video progress');
+  const expand = blogPage.querySelector('.expand');
+  const videoCurrentTimestamp = blogPage.querySelector('.video .currentTimestamp');
+  const videoEntireDuration = blogPage.querySelector('.video .entireDuration');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    timestampMedia(videoEntireDuration, videoCurrentTimestamp, video);
   });
 
-  progress.addEventListener('click', (e) => {
-    let progressWidth = progress.offsetWidth;
-    let currentWidth = e.offsetX;
+  videoPlayBtn.addEventListener('click', () => togglePlay(videoPlayBtn, video));
+  video.addEventListener('click', () => togglePlay(videoPlayBtn, video));
+  video.addEventListener('dblclick', () => fullscreen(video));
+  video.addEventListener('ended', () => endedMedia(videoPlayBtn, video));
+  video.addEventListener('play', () => playMedia(videoPlayBtn));
+  video.addEventListener('pause', () => pauseMedia(videoPlayBtn));
+  video.addEventListener('timeupdate', () => timeupdateMedia(video, videoProgress, videoCurrentTimestamp));
+  videoProgress.addEventListener('click', (e) => progressMedia(e, videoProgress, video));
+  expand.addEventListener('click', () => fullscreen(video));
 
-    progress.value = currentWidth / progressWidth * 100;
-    video.pause();
-    video.currentTime = video.duration * (currentWidth / progressWidth);
-    video.play();
+  // Audio player
+
+  const audioPlayBtn = blogPage.querySelector('.audio .togglePlay');
+  const audio = blogPage.querySelector('#audio-player');
+  const audioProgress = blogPage.querySelector('.audio progress');
+  const volume = blogPage.querySelector('.volume');
+  const audioCurrentTimestamp = blogPage.querySelector('.audio .currentTimestamp');
+  const audioEntireDuration = blogPage.querySelector('.audio .entireDuration');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    timestampMedia(audioEntireDuration, audioCurrentTimestamp, audio);
   });
 
-  expand.addEventListener('click', () => {
-    fullscreen(video);
+  audioPlayBtn.addEventListener('click', () => togglePlay(audioPlayBtn, audio));
+  audio.addEventListener('click', () => togglePlay(audioPlayBtn, audio));
+  audio.addEventListener('ended', () => endedMedia(audioPlayBtn, audio));
+  audio.addEventListener('play', () => playMedia(audioPlayBtn));
+  audio.addEventListener('pause', () => pauseMedia(audioPlayBtn));
+  audio.addEventListener('timeupdate', () => timeupdateMedia(audio, audioProgress, audioCurrentTimestamp));
+  audioProgress.addEventListener('click', (e) => progressMedia(e, audioProgress, audio));
+  volume.addEventListener('click', () => {
+    if (volume.classList.contains('muted')) {
+      audio.volume = 0;
+      volume.innerHTML = '<i class="fas fa-volume-mute"></i>';
+    } else {
+      audio.volume = 1;
+      volume.innerHTML = '<i class="fas fa-volume-up"></i>';
+    }
+    volume.classList.toggle('muted');
   });
 }
 

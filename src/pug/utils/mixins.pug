@@ -238,7 +238,7 @@ mixin audioBlogPost(month, day, src, h3)
       i.fas.fa-volume-up
   .blog-post
     .audio-container
-      audio(preload="metadata")
+      audio(id="audio-player" preload="metadata")
         source(src=`../../assets/audio/${src}.ogg` type="audio/ogg; codecs=vorbis")
         source(src=`../../assets/audio/${src}.mp3` type="audio/mpeg")
       +controls()
@@ -253,4 +253,4 @@ mixin controls(video)
     if (video)
       button.expand #[i.fas.fa-expand-alt]
     else
-      button.volume #[i.fas.fa-volume-up]
+      button.volume.muted #[i.fas.fa-volume-up]

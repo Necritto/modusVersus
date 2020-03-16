@@ -213,11 +213,7 @@ mixin videoBlogPost(month, day, src, h3)
         source(src=`../../assets/video/${src}.mp4` type="video/mp4")
         source(src=`../../assets/video/${src}.webm` type="video/webm")
         source(src=`../../assets/video/${src}.ogv` type="video/ogg")
-      .controls
-        button.togglePlay.paused #[i.fas.fa-play]
-        progress(max="100" value="0")
-        p #[span.currentTimestamp 00:00]&emsp;/&emsp;#[span.entireDuration 00:00]
-        button.expand #[i.fas.fa-expand-alt]
+      +controls(true)
     h3=h3
     p Posted by #[span Admin] in #[span Video] #[span #[i.fas.fa-tags] Nature] #[span #[i.fas.fa-comments] 22]
 
@@ -232,3 +228,29 @@ mixin quoteBlogPost(month, day, h3, quote)
     h3=h3
     p Posted by #[span Admin] in #[span Video] #[span #[i.fas.fa-tags] Nature] #[span #[i.fas.fa-comments] 22]
     blockquote=quote
+
+mixin audioBlogPost(month, day, src, h3)
+  .blog-datatype
+    .blog__date
+      p=month
+      span=day
+    .blog__type
+      i.fas.fa-volume-up
+  .blog-post
+    .audio-container
+      audio(preload="metadata")
+        source(src=`../../assets/audio/${src}.ogg` type="audio/ogg; codecs=vorbis")
+        source(src=`../../assets/audio/${src}.mp3` type="audio/mpeg")
+      +controls()
+    h3=h3
+    p Posted by #[span Admin] in #[span Audio] #[span #[i.fas.fa-tags] Nature] #[span #[i.fas.fa-comments] 22]
+
+mixin controls(video)
+  .controls
+    button.togglePlay.paused #[i.fas.fa-play]
+    progress(max="100" value="0")
+    p #[span.currentTimestamp 00:00]&emsp;/&emsp;#[span.entireDuration 00:00]
+    if (video)
+      button.expand #[i.fas.fa-expand-alt]
+    else
+      button.volume #[i.fas.fa-volume-up]

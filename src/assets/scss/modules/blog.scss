@@ -20,7 +20,7 @@
 
 .blog-container {
   @extend %between;
-  margin-top: 100px;
+  margin: 100px 0 40px;
 }
 
 .blog-content {
@@ -253,6 +253,22 @@
       font-size: 14px;
       line-height: 20.8px;
       font-style: italic;
+    }
+  }
+}
+
+.audio {
+  border-bottom: none;
+
+  .blog-post {
+    max-width: 770px;
+    width: 100%;
+
+    .audio-container {
+      padding: 20px;
+      background-color: #f8f8f8;
+      margin-bottom: 30px;
+      @extend %shadow;
     }
   }
 }

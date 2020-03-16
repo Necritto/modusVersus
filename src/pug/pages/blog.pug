@@ -45,6 +45,13 @@ block variables
         Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
       `
     };
+  -
+    var audio = {
+      month: 'May',
+      day: 12,
+      src: 'skeletor',
+      h3: 'Duis dapibus aliquam mi, eget euismod sem scelerisque ut.'
+    };
 
 block content
   main.blog-main
@@ -60,4 +67,6 @@ block content
             +videoBlogPost(video.month, video.day, video.src, video.h3)
           article.blog-item.quote
             +quoteBlogPost(quote.month, quote.day, quote.h3, quote.quote)
+          article.blog-item.audio
+            +audioBlogPost(audio.month, audio.day, audio.src, audio.h3)
         include ../includes/modules/blog-aside

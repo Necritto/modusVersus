@@ -13,3 +13,5 @@
 *.mp4 binary
 *.ogv binary
 *.webm binary
+*.ogg binary
+*.mp3 binary

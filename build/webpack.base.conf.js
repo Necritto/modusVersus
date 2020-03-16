@@ -47,7 +47,7 @@ module.exports = {
       loader: 'babel-loader',
       exclude: '/node_modules/'
     }, {
-      test: /\.(png|jpg|gif|svg)$/,
+      test: /\.(png|jpg|gif|svg|mp4|ogv|webm|mp3|oog)$/,
       loader: 'file-loader',
       options: {
         name: '[name].[ext]'
@@ -89,6 +89,8 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
+      { from: `${PATHS.src}/${PATHS.assets}video`, to: `${PATHS.assets}video` },
+      { from: `${PATHS.src}/${PATHS.assets}audio`, to: `${PATHS.assets}audio` },
       { from: `${PATHS.src}/static`, to: '' },
     ]),
 

@@ -1,0 +1,50 @@
+-
+  var categories = [
+    {name: 'logo design', class: 'logoDesign'},
+    {name: 'web design', class: 'webDesign'}, 
+    {name: 'photography', class: 'photography'}, 
+    {name: 'wordpress', class: 'wordpress'},
+    {name: 'icons', class: 'icons'}
+  ];
+-
+  var recentPosts = [
+    {title: 'Curabitur vitae velit', date: '25 May 2013'},
+    {title: 'Vivamus at elit quis urna adipiscing iaculis', date: '25 May 2013'}, 
+    {title: 'Curabitur vitae velit', date: '25 May 2013'}, 
+    {title: 'Vivamus at elit quis urna adipiscing iaculis', date: '25 May 2013'}
+  ];
+-
+  var tags = [
+    {value: 'Maecenas ', class: 'tags__btn'},
+    {value: 'Nunc ', class: 'tags__btn'}, 
+    {value: 'Praesent ', class: 'tags__btn'}
+  ];
+- var count = 0;
+-
+  var archive = [
+    {year: 2013, class: 'y2013'},
+    {year: 2012, class: 'y2012'}, 
+    {year: 2011, class: 'y2011'}
+  ];
+
+aside.blog-aside
+  p #[strong Categories]
+  ul.blog__categories
+    for item in categories
+      li(class=item.class) #[a(href='#') #[i.fas.fa-arrow-circle-right] #{item.name}]
+  p #[strong Recent Posts]
+  ul.blog__recent
+    for item in recentPosts
+      li #[span #[i.fas.fa-angle-right]#[a(href='#') #{item.title}]]
+        p #{item.date}
+  .blog__tags
+    h3 #[strong Tags]
+    .tags-btns
+      while count < 3
+        for item in tags
+          button(class=item.class) #{item.value}
+        -count++
+  p #[strong Archive]
+  ul.blog__archive
+    for item in archive
+      li(class=item.class) #[a(href='#') #[i.fas.fa-arrow-circle-right] #{item.year}]

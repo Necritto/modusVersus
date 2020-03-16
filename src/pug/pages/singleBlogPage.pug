@@ -1,0 +1,13 @@
+extends ../layout/main
+
+block variables
+  - var title = 'MODUS versus';
+  - var pageClass = 'blog-page singleBlogPage';
+
+block content
+  main.blog-main
+    +pageTitle('Blog')
+    .container
+      .blog-container
+        section.blog-content
+        include ../includes/modules/blog-aside

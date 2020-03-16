@@ -2,8 +2,9 @@ const indexPage = document.querySelector('.index-page');
 const aboutPage = document.querySelector('.about-page');
 const portfolioPage = document.querySelector('.portfolioPage');
 const singlePage = document.querySelector('.singlePortfolioPage');
+const blogPage = document.querySelector('.blog-page');
 
-if (indexPage || singlePage) {
+if (indexPage || singlePage || blogPage) {
 
   // Slider
 
@@ -390,3 +391,131 @@ if (portfolioPage) {
       console.log(err);
     });
 }
+
+if (blogPage) {
+
+  // Controls
+
+  const togglePlay = (playBtn, mediaElem) => {
+    (playBtn.classList.contains('paused')) ? mediaElem.play() : mediaElem.pause();
+  };
+
+  const playMedia = (playBtn) => {
+    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    playBtn.classList.toggle('paused');
+  };
+
+  const pauseMedia = (playBtn) => {
+    playBtn.innerHTML = '<i class="fas fa-play"></i>';
+    playBtn.classList.toggle('paused');
+  };
+
+  const endedMedia = (playBtn, mediaElem) => {
+    mediaElem.pause();
+    playBtn.innerHTML = '<i class="fas fa-play"></i>';
+  };
+
+  const timeupdateMedia = (mediaElem, progressElem, currentTimestamp) => {
+    let duration = mediaElem.duration;
+    let currentTime = mediaElem.currentTime;
+
+    progressElem.value = currentTime / duration * 100;
+
+    currentTimestamp.textContent = formatTime(currentTime);
+  };
+
+  const progressMedia = (event, progressElem, mediaElem) => {
+    let progressWidth = progressElem.offsetWidth;
+    let currentWidth = event.offsetX;
+
+    progressElem.value = currentWidth / progressWidth * 100;
+    mediaElem.pause();
+    mediaElem.currentTime = mediaElem.duration * (currentWidth / progressWidth);
+    mediaElem.play();
+  };
+
+  const timestampMedia = (entireDuration, currentTimestamp, mediaElem) => {
+    entireDuration.innerHTML = formatTime(mediaElem.duration);
+    currentTimestamp.innerHTML = formatTime(0);
+  };
+
+  // Video player
+
+  const videoPlayBtn = blogPage.querySelector('.video .togglePlay');
+  const video = blogPage.querySelector('#video-player');
+  const videoProgress = blogPage.querySelector('.video progress');
+  const expand = blogPage.querySelector('.expand');
+  const videoCurrentTimestamp = blogPage.querySelector('.video .currentTimestamp');
+  const videoEntireDuration = blogPage.querySelector('.video .entireDuration');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    timestampMedia(videoEntireDuration, videoCurrentTimestamp, video);
+  });
+
+  videoPlayBtn.addEventListener('click', () => togglePlay(videoPlayBtn, video));
+  video.addEventListener('click', () => togglePlay(videoPlayBtn, video));
+  video.addEventListener('dblclick', () => fullscreen(video));
+  video.addEventListener('ended', () => endedMedia(videoPlayBtn, video));
+  video.addEventListener('play', () => playMedia(videoPlayBtn));
+  video.addEventListener('pause', () => pauseMedia(videoPlayBtn));
+  video.addEventListener('timeupdate', () => timeupdateMedia(video, videoProgress, videoCurrentTimestamp));
+  videoProgress.addEventListener('click', (e) => progressMedia(e, videoProgress, video));
+  expand.addEventListener('click', () => fullscreen(video));
+
+  // Audio player
+
+  const audioPlayBtn = blogPage.querySelector('.audio .togglePlay');
+  const audio = blogPage.querySelector('#audio-player');
+  const audioProgress = blogPage.querySelector('.audio progress');
+  const volume = blogPage.querySelector('.volume');
+  const audioCurrentTimestamp = blogPage.querySelector('.audio .currentTimestamp');
+  const audioEntireDuration = blogPage.querySelector('.audio .entireDuration');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    timestampMedia(audioEntireDuration, audioCurrentTimestamp, audio);
+  });
+
+  audioPlayBtn.addEventListener('click', () => togglePlay(audioPlayBtn, audio));
+  audio.addEventListener('click', () => togglePlay(audioPlayBtn, audio));
+  audio.addEventListener('ended', () => endedMedia(audioPlayBtn, audio));
+  audio.addEventListener('play', () => playMedia(audioPlayBtn));
+  audio.addEventListener('pause', () => pauseMedia(audioPlayBtn));
+  audio.addEventListener('timeupdate', () => timeupdateMedia(audio, audioProgress, audioCurrentTimestamp));
+  audioProgress.addEventListener('click', (e) => progressMedia(e, audioProgress, audio));
+  volume.addEventListener('click', () => {
+    if (volume.classList.contains('muted')) {
+      audio.volume = 0;
+      volume.innerHTML = '<i class="fas fa-volume-mute"></i>';
+    } else {
+      audio.volume = 1;
+      volume.innerHTML = '<i class="fas fa-volume-up"></i>';
+    }
+    volume.classList.toggle('muted');
+  });
+}
+
+function fullscreen(elem) {
+  if (!document.fullscreenElement) {
+    elem.requestFullscreen()
+      .catch(err => {
+        alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+      });
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+function formatTime(time) {
+  let min = Math.floor(time / 60);
+  let sec = Math.floor(time % 60);
+
+  return `${min.lead0(2)}:${sec.lead0(2)}`;
+}
+
+Number.prototype.lead0 = function (n) {
+  let nz = '' + this;
+  while (nz.length < n) {
+    nz = '0' + nz;
+  }
+  return nz;
+};

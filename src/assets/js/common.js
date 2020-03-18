@@ -495,6 +495,86 @@ if (blogPage) {
   });
 }
 
+if (singleBlogPage) {
+  let comments = [];
+  loadComments(comments);
+
+  const sendBtn = document.querySelector('button[type="submit"]');
+
+  sendBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const commentName = document.querySelector('#comment-name');
+    const commentBody = document.querySelector('.comment-form textarea');
+
+    let comment = {
+      name: commentName.value,
+      body: commentBody.value,
+      time: Math.floor(Date.now() / 1000)
+    };
+
+    commentName.value = '';
+    commentBody.value = '';
+
+    comments.push(comment);
+
+    saveComments(comments);
+    showComments(comments);
+  });
+}
+
+function saveComments(items) {
+  localStorage.setItem('comments', JSON.stringify(items));
+}
+
+function loadComments(items) {
+  if (localStorage.getItem('comments')) {
+    items = JSON.parse(localStorage.getItem('comments'));
+  }
+
+  showComments(items);
+}
+
+function showComments(items) {
+  const commentField = document.querySelector('#comment-field');
+  let out = '';
+
+  items.forEach(item => {
+    out += `
+      <div class="comment-body">
+        <div class="comment__avatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="comment__item">
+          <h3>${item.name} <span>${timeConverter(item.time)}</span></h3>
+          <div class="comment-wrap">
+            <p>${item.body}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  commentField.innerHTML = out;
+}
+
+function timeConverter(timestamp) {
+  let time = new Date(timestamp * 1000);
+  let months = [
+    'January', 'February', 'March',
+    'April', 'May', 'June',
+    'July', 'August', 'September',
+    'October', 'November', 'December'
+  ];
+  let year = time.getFullYear();
+  let month = months[time.getMonth()];
+  let date = time.getDate();
+  let hour = time.getHours();
+  let min = time.getMinutes();
+
+  return `${date} ${month} ${year},${hour}:${min}`;
+}
+
 function fullscreen(elem) {
   if (!document.fullscreenElement) {
     elem.requestFullscreen()

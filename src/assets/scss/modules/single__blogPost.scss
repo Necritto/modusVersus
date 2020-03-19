@@ -17,7 +17,7 @@
   }
 }
 
-.post__descr {
+.blog-post__descr {
   color: #7f8c8c;
   font-size: 14px;
   line-height: 22.4px;
@@ -170,6 +170,7 @@
 
   .comment-body {
     display: flex;
+    margin-bottom: 30px;
   }
 
   .comment__avatar {

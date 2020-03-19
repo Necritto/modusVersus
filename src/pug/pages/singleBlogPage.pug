@@ -25,7 +25,7 @@ block content
               h3 Duis dapibus aliquam mi, eget euismod sem scelerisque ut.
               p Posted by #[span Admin] in #[span Wordpress] #[span #[i.fas.fa-tags] Design, Template] #[span #[i.fas.fa-comments] 22]
           +slider()
-          .post__descr
+          .blog-post__descr
             - var i = 0
             while i < 4
               p Duis dapibus aliquam mi, eget euismod sem scelerisque ut. 
@@ -54,8 +54,8 @@ block content
               h2 Leave a comment
               input(type="text", name="comment", id="comment-name", required)
               label(for="comment-name") Name
-              //- input(type="email", name="comment", id="comment-email", required)
-              //- label(for="comment-email") E-mail
+              input(type="email", name="comment", id="comment-email", required)
+              label(for="comment-email") E-mail
               input(type="url", name="comment", id="comment-url")
               label(for="comment-url") Web site
               textarea(name="comment", cols="30", rows="10", required)

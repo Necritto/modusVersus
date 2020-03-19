@@ -4,8 +4,9 @@ const portfolioPage = document.querySelector('.portfolioPage');
 const singlePage = document.querySelector('.singlePortfolioPage');
 const blogPage = document.querySelector('.blog-page');
 const singleBlogPage = document.querySelector('.singleBlogPage');
+const featuresPage = document.querySelector('.features-page');
 
-if (indexPage || singlePage || blogPage || singleBlogPage) {
+if (indexPage || singlePage || blogPage || singleBlogPage || featuresPage) {
 
   // Slider
 
@@ -572,7 +573,7 @@ function timeConverter(timestamp) {
   let hour = time.getHours();
   let min = time.getMinutes();
 
-  return `${date} ${month} ${year},${hour}:${min}`;
+  return `${date} ${month} ${year}, ${hour}:${min}`;
 }
 
 function fullscreen(elem) {

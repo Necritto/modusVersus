@@ -1,0 +1,123 @@
+.features-page {
+
+  .features-main {
+    transform: translateY(-23px);
+  }
+
+  .header__slider {
+    transform: translateY(0);
+    background-color: #f8f8f8;
+    @extend %shadow;
+    margin: 50px 0 100px;
+
+    &::after {
+      content: 'project slideshow';
+      color: #b0b8b9;
+      font-size: 25px;
+      font-weight: 700;
+      line-height: 30px;
+      text-transform: uppercase;
+      position: absolute;
+      top: 80%;
+      left: 39%;
+    }
+
+    .fa-image {
+      color: #ececec;
+      font-size: 100px;
+    }
+  }
+
+  .header__border {
+    top: 50px;
+  }
+}
+
+.features-gallery {
+  display: flex;
+  justify-content: space-between;
+
+  .big-slider {
+    flex-basis: 75%;
+
+    .header__slider {
+      max-width: 870px;
+
+      &::after {
+        content: 'Blog/Page slideshow';
+        left: 33%;
+      }
+    }
+  }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+
+    .small-slider {
+
+      .header__slider {
+        max-width: 270px;
+
+        .header__wrap {
+          width: 270px;
+          height: 200px;
+        }
+
+        .fa-image {
+          font-size: 50px;
+        }
+
+        &::after {
+          content: 'Sidebar  slideshow';
+          font-size: 16px;
+          left: 20%;
+        }
+
+        .border {
+          width: 30px;
+        }
+      }
+    }
+
+    .sidebar-gallery {
+
+      h3 {
+        color: #7f8c8c;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 19.2px;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+      }
+
+      .gallery-img {
+        max-width: 270px;
+        display: flex;
+        flex-wrap: wrap;
+        
+        .img {
+          width: 70px;
+          height: 65px;
+          background-color: #f8f8f8;
+          margin: 0 30px 25px 0;
+          @extend %center;
+          @extend %shadow;
+
+          &:nth-child(3) {
+            margin: 0 0 25px 0;
+          }
+
+          &:nth-child(6) {
+            margin: 0;
+          }
+
+          .fa-image {
+            color: #ececec;
+            font-size: 30px;
+          }
+        }
+      }
+    }
+  }
+}

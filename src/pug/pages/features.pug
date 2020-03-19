@@ -1,0 +1,26 @@
+extends ../layout/main
+
+block variables
+  - var title = 'MODUS versus';
+  - var pageClass = 'features-page';
+
+block content
+  main.features-main
+    +pageTitle('Features')
+    section.features-sliders
+      .container
+        +slider()
+        .features-gallery
+          .big-slider
+            +slider()
+          .sidebar
+            .small-slider
+              +slider()
+            .sidebar-gallery
+              h3 Sidebar gallery
+              .gallery-img
+                - var i = 0;
+                while i < 6
+                  .img
+                    i.far.fa-image
+                    -i++

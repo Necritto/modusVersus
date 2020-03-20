@@ -3,6 +3,15 @@ extends ../layout/main
 block variables
   - var title = 'MODUS versus';
   - var pageClass = 'features-page';
+  -
+    var accordion = {
+      header: 'Accordion title',
+      descrBig: `Vivamus eget ante bibendum arcu vehicula ultricies. 
+        Integer venenatis mattis nisl, vitae pulvinar dui tempor.
+        Ut eleifend libero sed neque rhoncus consequat. 
+        Maecenas tincidunt, augue et rutrum condimentum, libero lectus mattis orci, ut commodo.`,
+      descrSmall: 'Vivamus eget ante bibendum arcu vehicula ultricies. Integer venenatis'
+    };
 
 block content
   main.features-main
@@ -24,3 +33,18 @@ block content
                   .img
                     i.far.fa-image
                     -i++
+    section.features-services
+      .container
+        include ../includes/modules/service-cards
+    section.features-info
+      .container
+        .big-accordion
+          - var j = 0;
+          while j < 3
+            +accordion(accordion.header, accordion.descrBig)
+            -j++
+        .small-accordion
+          - var j = 0;
+          while j < 3
+            +accordion(accordion.header, accordion.descrSmall)
+            -j++

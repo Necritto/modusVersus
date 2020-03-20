@@ -524,6 +524,21 @@ if (singleBlogPage) {
   });
 }
 
+if (featuresPage) {
+  const accs = document.querySelectorAll('.accordion-btn');
+
+  accs.forEach(item => item.addEventListener('click', () => {
+    item.parentElement.classList.contains('clicked')
+      ? item.children[1].innerHTML = '<i class="fas fa-plus-circle"></i>'
+      : item.children[1].innerHTML = '<i class="fas fa-minus-circle"></<i>';
+    item.parentElement.classList.toggle('clicked');
+
+    item.parentElement.classList.contains('clicked')
+      ? item.nextElementSibling.classList.remove('hide')
+      : item.nextElementSibling.classList.add('hide');
+  }));
+}
+
 function saveComments(items) {
   localStorage.setItem('comments', JSON.stringify(items));
 }

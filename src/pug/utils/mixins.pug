@@ -254,3 +254,11 @@ mixin controls(video)
       button.expand #[i.fas.fa-expand-alt]
     else
       button.volume.muted #[i.fas.fa-volume-up]
+
+mixin accordion(header, descr)
+  .accordion__item
+    .accordion-btn
+      h4=header
+      p #[i.fas.fa-plus-circle]
+    .accordion-panel.hide
+      p=descr

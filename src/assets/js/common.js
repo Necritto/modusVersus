@@ -12,11 +12,11 @@ if (indexPage || singlePage || blogPage || singleBlogPage || featuresPage) {
   // Slider
 
   {
-    const slider = document.querySelector('.header__slider');
-    const content = slider.querySelector('.slider__content');
-    const border = slider.querySelector('.header__border');
+    const slider = document.querySelectorAll('.header__slider');
 
-    slider.addEventListener('click', (e) => {
+    slider.forEach(item => item.addEventListener('click', (e) => {
+      const content = item.querySelector('.slider__content');
+      const border = item.querySelector('.header__border');
       const showElement = [...content.children].filter(item => item.classList.contains('show'))[0];
       const borderActive = [...border.children].filter(item => item.classList.contains('border-active'))[0];
 
@@ -43,7 +43,7 @@ if (indexPage || singlePage || blogPage || singleBlogPage || featuresPage) {
           }
         }
       }
-    });
+    }));
   }
 
 }

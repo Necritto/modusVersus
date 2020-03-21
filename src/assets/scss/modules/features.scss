@@ -416,3 +416,46 @@
     }
   }
 }
+
+.features-lists {
+  margin: 50px 0;
+  border-bottom: 3px solid #e5e6e6;
+  @extend %between;
+
+  .list__item {
+    color: #7f8c8c;
+    margin-bottom: 50px;
+
+    h4 {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 19.2px;
+      margin-bottom: 35px;
+    }
+
+    li {
+      font-size: 14px;
+      line-height: 26px;
+      display: flex;
+      align-items: center;
+
+      i {
+        color: #e1524b;
+        font-size: 12px;
+        padding-right: 5px;
+      }
+    }
+  }
+
+  .fs13 {
+    li {
+      font-size: 13px;
+    }
+  }
+
+  .success {
+    li i {
+      color: #62b9b0;
+    }
+  }
+}

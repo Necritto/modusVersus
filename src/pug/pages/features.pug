@@ -12,6 +12,8 @@ block variables
         Maecenas tincidunt, augue et rutrum condimentum, libero lectus mattis orci, ut commodo.`,
       descrSmall: 'Vivamus eget ante bibendum arcu vehicula ultricies. Integer venenatis'
     };
+  - var list = ['Quisque at massa ipsum','Maecenas a lorem augue, egestas','Cras vitae felis at lacus eleifend', 'Etiam auctor diam pellentesque','Nulla ac massa at dolor','Condimentum eleifend vitae vitae'];
+
 
 block content
   main.features-main
@@ -124,3 +126,37 @@ block content
             .col
               h4 Headline
               p Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis. Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+        .features-lists
+          .list__item        
+            h4 Arrow list font size 13px
+            ul.arrow-list.fs13
+              - var i = 0;
+              while i < 6
+                li
+                  +list('fas fa-arrow-right', list[i])
+                -i++
+          .list__item              
+            h4 List font size 14px
+            ul.times-list
+              - var i = 0;
+              while i < 6
+                li
+                  +list('fas fa-times', list[i])
+                -i++
+          .list__item              
+            h4 List font size 14px
+            ul.circle-list.success
+              - var i = 0;
+              while i < 6
+                li
+                  +list('fas fa-arrow-circle-right', list[i])
+                -i++
+          .list__item              
+            h4 List font size 14px
+            ul.check-list.success
+              - var i = 0;
+              while i < 6
+                li
+                  +list('fas fa-check', list[i])
+                -i++
+                

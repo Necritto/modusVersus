@@ -271,3 +271,26 @@ mixin tabsBlock(descr, id)
     p=descr
     .tabs__img
       i.far.fa-image
+
+mixin services(header, descr)
+  .top-services
+    .wrap
+      h2.service__header=header
+      p.service__descr=descr
+    button.service__btn View&nbsp;more
+
+mixin table(theadContent, tbodyContent, rowOrCol)
+  table
+    thead
+      tr
+        - var i = 0;
+        while i < rowOrCol
+          th=theadContent
+          -i++
+    tbody
+      - var i = 0;
+      while i < rowOrCol
+        tr
+          for item in tbodyContent
+            td=item
+          -i++

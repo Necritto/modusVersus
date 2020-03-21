@@ -13,7 +13,9 @@ block variables
       descrSmall: 'Vivamus eget ante bibendum arcu vehicula ultricies. Integer venenatis'
     };
   - var list = ['Quisque at massa ipsum','Maecenas a lorem augue, egestas','Cras vitae felis at lacus eleifend', 'Etiam auctor diam pellentesque','Nulla ac massa at dolor','Condimentum eleifend vitae vitae'];
-
+  - var theadContent = 'TR Title';
+  - var tbodyContent = ['Quisque', 'Maecenas a lorem augue', 'Etiam auctor diam pellentesque ulla ac massa at dolor', 'Maecenas a lorem augue'];
+  - var tbodyCutContent = ['Quisque', 'Maecenas a lorem augue', 'Maecenas a lorem augue'];
 
 block content
   main.features-main
@@ -159,4 +161,15 @@ block content
                 li
                   +list('fas fa-check', list[i])
                 -i++
-                
+        .features-services
+          +services('Headline', `
+            Ut eleifend libero sed neque rhoncus consequat. 
+            Maecenas tincidunt, augue et rutrum condimentum,
+            libero lectus mattis orci, ut commodo. 
+          `)
+          .features-tables
+            .table__item
+              +table(theadContent, tbodyContent, 4)
+            .table__item.col-2
+              +table(theadContent, tbodyCutContent, 3)
+              +table(theadContent, tbodyCutContent, 3)

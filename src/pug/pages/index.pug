@@ -16,13 +16,11 @@ block content
   +slider(slider[0].h1, slider[0].p, slider[1].h1, slider[1].p, slider[2].h1, slider[2].p)
   section.service
     .container
-      .top-services
-        .wrap
-          h2.service__header Some of our top services
-          p.service__descr Ut eleifend libero sed neque rhoncus consequat.
-            | Maecenas tincidunt, augue et rutrum condimentum,
-            | libero lectus mattis orci, ut commodo. 
-        button.service__btn View&nbsp;more
+      +services('Some of our top services', `
+        Ut eleifend libero sed neque rhoncus consequat.
+        Maecenas tincidunt, augue et rutrum condimentum,
+        libero lectus mattis orci, ut commodo. 
+      `)
       include ../includes/modules/service-cards
   section.why
     .why__ruler

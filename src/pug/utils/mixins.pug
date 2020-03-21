@@ -156,22 +156,25 @@ mixin carousel(title, sp)
           .clients-slider
             - var w = 0;
               while w < 4
-                .slide
-                  .portfolio-post
-                    .portfolio-post__front
-                      .portfolio-img
-                        .withoutImg
-                          i.far.fa-image
-                    .portfolio-post__back
-                      .portfolio-post__back-refs
-                        a(class="portfolio-post__link" target="_blank" href="/")
-                          .chain-bg
-                            i.far.fa-eye
-                        a(class="portfolio-post__link" target="_blank" href="/")
-                          .chain-bg
-                            i.fas.fa-link
-                      p.portfolio-post__back-descr Lorem ipsum
+                +postItem()
                 -w++
+
+mixin postItem()
+  .slide
+    .portfolio-post
+      .portfolio-post__front
+        .portfolio-img
+          .withoutImg
+            i.far.fa-image
+      .portfolio-post__back
+        .portfolio-post__back-refs
+          a(class="portfolio-post__link" target="_blank" href="/")
+            .chain-bg
+              i.far.fa-eye
+          a(class="portfolio-post__link" target="_blank" href="/")
+            .chain-bg
+              i.fas.fa-link
+        p.portfolio-post__back-descr Lorem ipsum
 
 mixin docsBlogPost(month, day, h3, p)
   .blog-datatype

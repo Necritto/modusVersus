@@ -82,3 +82,14 @@ block content
                   Ut eleifend libero sed neque rhoncu
                 `, `tab_${j + 5}`)
                 -j++
+        .features-posts
+          .small-posts
+            - var q = 0;
+            while q < 4
+              +postItem()
+              -q++
+          .big-posts
+            - var q = 0;
+            while q < 2
+              +postItem()
+              -q++

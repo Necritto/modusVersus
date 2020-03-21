@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 const indexPage = document.querySelector('.index-page');
 const aboutPage = document.querySelector('.about-page');
 const portfolioPage = document.querySelector('.portfolioPage');
@@ -525,18 +526,45 @@ if (singleBlogPage) {
 }
 
 if (featuresPage) {
+
+  // Accordion
+
   const accs = document.querySelectorAll('.accordion-btn');
 
   accs.forEach(item => item.addEventListener('click', () => {
     item.parentElement.classList.contains('clicked')
-      ? item.children[1].innerHTML = '<i class="fas fa-plus-circle"></i>'
-      : item.children[1].innerHTML = '<i class="fas fa-minus-circle"></<i>';
+      ? (item.children[1].innerHTML = '<i class="fas fa-plus-circle"></i>',
+        item.nextElementSibling.classList.add('hide'))
+      : (item.children[1].innerHTML = '<i class="fas fa-minus-circle"></<i>',
+        item.nextElementSibling.classList.remove('hide'));
     item.parentElement.classList.toggle('clicked');
-
-    item.parentElement.classList.contains('clicked')
-      ? item.nextElementSibling.classList.remove('hide')
-      : item.nextElementSibling.classList.add('hide');
   }));
+
+  // Tabs
+
+  const tabs = (tabsItems, tabsBlocks) => {
+    tabsItems.forEach(item => item.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      tabsBlocks.forEach(item => item.style.display = 'none');
+      tabsItems.forEach(item => {
+        item.style.backgroundColor = '#62b9b0';
+        item.style.color = '#ffffff';
+      });
+
+      e.target.style.backgroundColor = '#f8f8f8';
+      e.target.style.color = '#7f8c8c';
+      document.getElementById(`${e.target.hash.substr(1)}`).style.display = 'flex';
+    }));
+  };
+
+  const tabsItemsBig = document.querySelectorAll('.big-tabs .tabs__item');
+  const tabsBlocksBig = document.querySelectorAll('.big-tabs .tabs__block');
+  const tabsItemsSmall = document.querySelectorAll('.small-tabs .tabs__item');
+  const tabsBlocksSmall = document.querySelectorAll('.small-tabs .tabs__block');
+
+  tabs(tabsItemsBig, tabsBlocksBig);
+  tabs(tabsItemsSmall, tabsBlocksSmall);
 }
 
 function saveComments(items) {

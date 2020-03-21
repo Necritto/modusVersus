@@ -38,13 +38,47 @@ block content
         include ../includes/modules/service-cards
     section.features-info
       .container
-        .big-accordion
-          - var j = 0;
-          while j < 3
-            +accordion(accordion.header, accordion.descrBig)
-            -j++
-        .small-accordion
-          - var j = 0;
-          while j < 3
-            +accordion(accordion.header, accordion.descrSmall)
-            -j++
+        .accordions
+          .big-accordion
+            - var j = 0;
+            while j < 3
+              +accordion(accordion.header, accordion.descrBig)
+              -j++
+          .small-accordion
+            - var j = 0;
+            while j < 3
+              +accordion(accordion.header, accordion.descrSmall)
+              -j++
+        .tabs
+          .big-tabs
+            nav.tabs__items
+              a(href="#tab_1" class="tabs__item") Tab Title
+              a(href="#tab_2" class="tabs__item") Tab Title
+              a(href="#tab_3" class="tabs__item") Tab Title
+              a(href="#tab_4" class="tabs__item") Tab Title
+            .tabs__body
+              - var j = 0;
+              while j < 4
+                +tabsBlock(`${j}
+                  Vivamus eget ante bibendum arcu vehicula ultricies.
+                  Integer venenatis mattis nisl, vitae pulvinar dui tempor.
+                  Ut eleifend libero sed neque rhoncus consequat. 
+                  Maecenas tincidunt, augue et rutrum condimentum, libero lectus mattis orci, ut commodo. 
+                  Vivamus eget ante bibendum arcu vehicula ultricies. 
+                  Integer venenatis mattis nisl, vitae pulvinar dui tempor.
+                  Ut eleifend libero sed neque rhoncus consequat.
+                `, `tab_${j + 1}`)
+                -j++
+          .small-tabs
+            nav.tabs__items
+              a(href="#tab_5" class="tabs__item") Tab Title
+              a(href="#tab_6" class="tabs__item") Tab Title
+            .tabs__body
+              - var j = 0;
+              while j < 2
+                +tabsBlock(`${j}
+                  Vivamus eget ante bibendum arcu vehicula ultricies. 
+                  Integer venenatis mattis nisl, vitae pulvinar dui tempor.
+                  Ut eleifend libero sed neque rhoncu
+                `, `tab_${j + 5}`)
+                -j++

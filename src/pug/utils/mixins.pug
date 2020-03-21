@@ -262,3 +262,9 @@ mixin accordion(header, descr)
       p #[i.fas.fa-plus-circle]
     .accordion-panel.hide
       p=descr
+
+mixin tabsBlock(descr, id)
+  div(class="tabs__block" id=id)
+    p=descr
+    .tabs__img
+      i.far.fa-image

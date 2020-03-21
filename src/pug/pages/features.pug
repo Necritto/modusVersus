@@ -1,0 +1,175 @@
+extends ../layout/main
+
+block variables
+  - var title = 'MODUS versus';
+  - var pageClass = 'features-page';
+  -
+    var accordion = {
+      header: 'Accordion title',
+      descrBig: `Vivamus eget ante bibendum arcu vehicula ultricies. 
+        Integer venenatis mattis nisl, vitae pulvinar dui tempor.
+        Ut eleifend libero sed neque rhoncus consequat. 
+        Maecenas tincidunt, augue et rutrum condimentum, libero lectus mattis orci, ut commodo.`,
+      descrSmall: 'Vivamus eget ante bibendum arcu vehicula ultricies. Integer venenatis'
+    };
+  - var list = ['Quisque at massa ipsum','Maecenas a lorem augue, egestas','Cras vitae felis at lacus eleifend', 'Etiam auctor diam pellentesque','Nulla ac massa at dolor','Condimentum eleifend vitae vitae'];
+  - var theadContent = 'TR Title';
+  - var tbodyContent = ['Quisque', 'Maecenas a lorem augue', 'Etiam auctor diam pellentesque ulla ac massa at dolor', 'Maecenas a lorem augue'];
+  - var tbodyCutContent = ['Quisque', 'Maecenas a lorem augue', 'Maecenas a lorem augue'];
+
+block content
+  main.features-main
+    +pageTitle('Features')
+    section.features-sliders
+      .container
+        +slider()
+        .features-gallery
+          .big-slider
+            +slider()
+          .sidebar
+            .small-slider
+              +slider()
+            .sidebar-gallery
+              h3 Sidebar gallery
+              .gallery-img
+                - var i = 0;
+                while i < 6
+                  .img
+                    i.far.fa-image
+                    -i++
+    section.features-services
+      .container
+        include ../includes/modules/service-cards
+    section.features-info
+      .container
+        .accordions
+          .big-accordion
+            - var j = 0;
+            while j < 3
+              +accordion(accordion.header, accordion.descrBig)
+              -j++
+          .small-accordion
+            - var j = 0;
+            while j < 3
+              +accordion(accordion.header, accordion.descrSmall)
+              -j++
+        .tabs
+          .big-tabs
+            nav.tabs__items
+              a(href="#tab_1" class="tabs__item") Tab Title
+              a(href="#tab_2" class="tabs__item") Tab Title
+              a(href="#tab_3" class="tabs__item") Tab Title
+              a(href="#tab_4" class="tabs__item") Tab Title
+            .tabs__body
+              - var j = 0;
+              while j < 4
+                +tabsBlock(`${j}
+                  Vivamus eget ante bibendum arcu vehicula ultricies.
+                  Integer venenatis mattis nisl, vitae pulvinar dui tempor.
+                  Ut eleifend libero sed neque rhoncus consequat. 
+                  Maecenas tincidunt, augue et rutrum condimentum, libero lectus mattis orci, ut commodo. 
+                  Vivamus eget ante bibendum arcu vehicula ultricies. 
+                  Integer venenatis mattis nisl, vitae pulvinar dui tempor.
+                  Ut eleifend libero sed neque rhoncus consequat.
+                `, `tab_${j + 1}`)
+                -j++
+          .small-tabs
+            nav.tabs__items
+              a(href="#tab_5" class="tabs__item") Tab Title
+              a(href="#tab_6" class="tabs__item") Tab Title
+            .tabs__body
+              - var j = 0;
+              while j < 2
+                +tabsBlock(`${j}
+                  Vivamus eget ante bibendum arcu vehicula ultricies. 
+                  Integer venenatis mattis nisl, vitae pulvinar dui tempor.
+                  Ut eleifend libero sed neque rhoncu
+                `, `tab_${j + 5}`)
+                -j++
+        .features-posts
+          .small-posts
+            - var q = 0;
+            while q < 4
+              +postItem()
+              -q++
+          .big-posts
+            - var q = 0;
+            while q < 2
+              +postItem()
+              -q++
+        .features-desrc
+          .col
+            h4 Headline
+            p Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis. Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+          .col-2
+            .col
+              h4 Headline
+              p Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis. Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+            .col
+              h4 Headline
+              p Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis. Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+          .col-2expand
+            .col
+              h4 Headline
+              p Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis. Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin in iaculis neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+            .col
+              h4 Headline
+              p Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis. Curabitur vitae velit in.
+          .col-4
+            .col
+              h4 Headline
+              p Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis. Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+            .col
+              h4 Headline
+              p Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis. Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+            .col
+              h4 Headline
+              p Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis. Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+            .col
+              h4 Headline
+              p Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis. Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+        .features-lists
+          .list__item        
+            h4 Arrow list font size 13px
+            ul.arrow-list.fs13
+              - var i = 0;
+              while i < 6
+                li
+                  +list('fas fa-arrow-right', list[i])
+                -i++
+          .list__item              
+            h4 List font size 14px
+            ul.times-list
+              - var i = 0;
+              while i < 6
+                li
+                  +list('fas fa-times', list[i])
+                -i++
+          .list__item              
+            h4 List font size 14px
+            ul.circle-list.success
+              - var i = 0;
+              while i < 6
+                li
+                  +list('fas fa-arrow-circle-right', list[i])
+                -i++
+          .list__item              
+            h4 List font size 14px
+            ul.check-list.success
+              - var i = 0;
+              while i < 6
+                li
+                  +list('fas fa-check', list[i])
+                -i++
+        .features-services
+          +services('Headline', `
+            Ut eleifend libero sed neque rhoncus consequat. 
+            Maecenas tincidunt, augue et rutrum condimentum,
+            libero lectus mattis orci, ut commodo. 
+          `)
+          .features-tables
+            .table__item
+              +table(theadContent, tbodyContent, 4)
+            .table__item.col-2
+              +table(theadContent, tbodyCutContent, 3)
+              +table(theadContent, tbodyCutContent, 3)

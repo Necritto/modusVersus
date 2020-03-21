@@ -1,20 +1,19 @@
-.service {
-  .card-wrap:hover {
-    transform: translateY(-10px);
+.card-wrap:hover {
+  transform: translateY(-10px);
 
-    .card-item {
-      box-shadow: 5px 0 5px rgba(0, 0, 0, 0.22);
-    }
+  .card-item {
+    box-shadow: 5px 0 5px rgba(0, 0, 0, 0.22);
+  }
 
-    .card__icon {
-      color: #e2534b;
-    }
+  .card__icon {
+    color: #e2534b;
+  }
 
-    .card__btn {
-      background-color: #e2534b;
-    }
+  .card__btn {
+    background-color: #e2534b;
   }
 }
+
 
 .top-services {
   background-color: #ececec;

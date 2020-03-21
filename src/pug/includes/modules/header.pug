@@ -4,7 +4,7 @@ header.header
       img(src="../../../assets/img/logo.png" alt="MODUS versus" class="logo")
       nav.navBar
         ul.navBar__item.topmenu
-          for item in [{name: 'Home', href: './index.html'}, {name: 'About', href: './about.html'}, {name: 'Portfolio'}, {name: 'Blog', href: './blog.html'}, {name: 'Features'}, {name: 'Contacts'}]
+          for item in [{name: 'Home', href: './index.html'}, {name: 'About', href: './about.html'}, {name: 'Portfolio'}, {name: 'Blog', href: './blog.html'}, {name: 'Features', href: './features.html'}, {name: 'Contacts'}]
             if (item.name === 'Portfolio')
               +portfolio('Portfolio')
             else

@@ -1,20 +1,22 @@
+/* eslint-disable indent */
 const indexPage = document.querySelector('.index-page');
 const aboutPage = document.querySelector('.about-page');
 const portfolioPage = document.querySelector('.portfolioPage');
 const singlePage = document.querySelector('.singlePortfolioPage');
 const blogPage = document.querySelector('.blog-page');
 const singleBlogPage = document.querySelector('.singleBlogPage');
+const featuresPage = document.querySelector('.features-page');
 
-if (indexPage || singlePage || blogPage || singleBlogPage) {
+if (indexPage || singlePage || blogPage || singleBlogPage || featuresPage) {
 
   // Slider
 
   {
-    const slider = document.querySelector('.header__slider');
-    const content = slider.querySelector('.slider__content');
-    const border = slider.querySelector('.header__border');
+    const slider = document.querySelectorAll('.header__slider');
 
-    slider.addEventListener('click', (e) => {
+    slider.forEach(item => item.addEventListener('click', (e) => {
+      const content = item.querySelector('.slider__content');
+      const border = item.querySelector('.header__border');
       const showElement = [...content.children].filter(item => item.classList.contains('show'))[0];
       const borderActive = [...border.children].filter(item => item.classList.contains('border-active'))[0];
 
@@ -41,7 +43,7 @@ if (indexPage || singlePage || blogPage || singleBlogPage) {
           }
         }
       }
-    });
+    }));
   }
 
 }
@@ -523,6 +525,48 @@ if (singleBlogPage) {
   });
 }
 
+if (featuresPage) {
+
+  // Accordion
+
+  const accs = document.querySelectorAll('.accordion-btn');
+
+  accs.forEach(item => item.addEventListener('click', () => {
+    item.parentElement.classList.contains('clicked')
+      ? (item.children[1].innerHTML = '<i class="fas fa-plus-circle"></i>',
+        item.nextElementSibling.classList.add('hide'))
+      : (item.children[1].innerHTML = '<i class="fas fa-minus-circle"></<i>',
+        item.nextElementSibling.classList.remove('hide'));
+    item.parentElement.classList.toggle('clicked');
+  }));
+
+  // Tabs
+
+  const tabs = (tabsItems, tabsBlocks) => {
+    tabsItems.forEach(item => item.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      tabsBlocks.forEach(item => item.style.display = 'none');
+      tabsItems.forEach(item => {
+        item.style.backgroundColor = '#62b9b0';
+        item.style.color = '#ffffff';
+      });
+
+      e.target.style.backgroundColor = '#f8f8f8';
+      e.target.style.color = '#7f8c8c';
+      document.getElementById(`${e.target.hash.substr(1)}`).style.display = 'flex';
+    }));
+  };
+
+  const tabsItemsBig = document.querySelectorAll('.big-tabs .tabs__item');
+  const tabsBlocksBig = document.querySelectorAll('.big-tabs .tabs__block');
+  const tabsItemsSmall = document.querySelectorAll('.small-tabs .tabs__item');
+  const tabsBlocksSmall = document.querySelectorAll('.small-tabs .tabs__block');
+
+  tabs(tabsItemsBig, tabsBlocksBig);
+  tabs(tabsItemsSmall, tabsBlocksSmall);
+}
+
 function saveComments(items) {
   localStorage.setItem('comments', JSON.stringify(items));
 }
@@ -572,7 +616,7 @@ function timeConverter(timestamp) {
   let hour = time.getHours();
   let min = time.getMinutes();
 
-  return `${date} ${month} ${year},${hour}:${min}`;
+  return `${date} ${month} ${year}, ${hour}:${min}`;
 }
 
 function fullscreen(elem) {

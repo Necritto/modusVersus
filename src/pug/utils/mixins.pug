@@ -43,8 +43,8 @@ mixin whyImg(url)
     .why-img
       img(src=url, alt="your image" class="why-img__item")
 
-mixin list(text)
-  i.fas.fa-arrow-right
+mixin list(classes, text)
+  i(class=classes)
   p=text
 
 mixin percent(num, str)
@@ -156,22 +156,25 @@ mixin carousel(title, sp)
           .clients-slider
             - var w = 0;
               while w < 4
-                .slide
-                  .portfolio-post
-                    .portfolio-post__front
-                      .portfolio-img
-                        .withoutImg
-                          i.far.fa-image
-                    .portfolio-post__back
-                      .portfolio-post__back-refs
-                        a(class="portfolio-post__link" target="_blank" href="/")
-                          .chain-bg
-                            i.far.fa-eye
-                        a(class="portfolio-post__link" target="_blank" href="/")
-                          .chain-bg
-                            i.fas.fa-link
-                      p.portfolio-post__back-descr Lorem ipsum
+                +postItem()
                 -w++
+
+mixin postItem()
+  .slide
+    .portfolio-post
+      .portfolio-post__front
+        .portfolio-img
+          .withoutImg
+            i.far.fa-image
+      .portfolio-post__back
+        .portfolio-post__back-refs
+          a(class="portfolio-post__link" target="_blank" href="/")
+            .chain-bg
+              i.far.fa-eye
+          a(class="portfolio-post__link" target="_blank" href="/")
+            .chain-bg
+              i.fas.fa-link
+        p.portfolio-post__back-descr Lorem ipsum
 
 mixin docsBlogPost(month, day, h3, p)
   .blog-datatype
@@ -254,3 +257,40 @@ mixin controls(video)
       button.expand #[i.fas.fa-expand-alt]
     else
       button.volume.muted #[i.fas.fa-volume-up]
+
+mixin accordion(header, descr)
+  .accordion__item
+    .accordion-btn
+      h4=header
+      p #[i.fas.fa-plus-circle]
+    .accordion-panel.hide
+      p=descr
+
+mixin tabsBlock(descr, id)
+  div(class="tabs__block" id=id)
+    p=descr
+    .tabs__img
+      i.far.fa-image
+
+mixin services(header, descr)
+  .top-services
+    .wrap
+      h2.service__header=header
+      p.service__descr=descr
+    button.service__btn View&nbsp;more
+
+mixin table(theadContent, tbodyContent, rowOrCol)
+  table
+    thead
+      tr
+        - var i = 0;
+        while i < rowOrCol
+          th=theadContent
+          -i++
+    tbody
+      - var i = 0;
+      while i < rowOrCol
+        tr
+          for item in tbodyContent
+            td=item
+          -i++

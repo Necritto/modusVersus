@@ -451,7 +451,7 @@ if (blogPage) {
   const videoCurrentTimestamp = blogPage.querySelector('.video .currentTimestamp');
   const videoEntireDuration = blogPage.querySelector('.video .entireDuration');
 
-  document.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('load', () => {
     timestampMedia(videoEntireDuration, videoCurrentTimestamp, video);
   });
 
@@ -474,7 +474,7 @@ if (blogPage) {
   const audioCurrentTimestamp = blogPage.querySelector('.audio .currentTimestamp');
   const audioEntireDuration = blogPage.querySelector('.audio .entireDuration');
 
-  document.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('load', () => {
     timestampMedia(audioEntireDuration, audioCurrentTimestamp, audio);
   });
 
@@ -566,6 +566,19 @@ if (featuresPage) {
   tabs(tabsItemsBig, tabsBlocksBig);
   tabs(tabsItemsSmall, tabsBlocksSmall);
 }
+
+// Search item
+
+const searchIcon = document.querySelector('.fa-search');
+const searchItem = document.querySelector('#searchItem');
+
+searchIcon.addEventListener('click', () => {
+  searchIcon.parentElement.nextElementSibling.classList.toggle('show');
+  searchIcon.parentElement.nextElementSibling.classList.toggle('hide');
+});
+
+console.log(searchItem);
+
 
 function saveComments(items) {
   localStorage.setItem('comments', JSON.stringify(items));

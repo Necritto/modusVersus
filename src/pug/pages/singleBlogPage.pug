@@ -50,14 +50,5 @@ block content
               button.next-btn #[i.fas.fa-angle-right]
           .comment
             #comment-field
-            form.comment-form
-              h2 Leave a comment
-              input(type="text", name="comment", id="comment-name", required)
-              label(for="comment-name") Name
-              input(type="email", name="comment", id="comment-email", required)
-              label(for="comment-email") E-mail
-              input(type="url", name="comment", id="comment-url")
-              label(for="comment-url") Web site
-              textarea(name="comment", cols="30", rows="10", required)
-              button(type="submit") Send
+            +form('Leave a comment')
         include ../includes/modules/blog-aside

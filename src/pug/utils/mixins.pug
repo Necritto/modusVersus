@@ -25,10 +25,12 @@ mixin card(icon, header, descr)
     .card-item
       span.card__icon
         i(class=icon)
-      h3.card__header
-        =header
-      p.card__descr
-        =descr
+      if header
+        h3.card__header
+          =header
+      if descr
+        p.card__descr
+          =descr
     button.card__btn.btn read more
 
 mixin whyImg(url)
@@ -294,3 +296,15 @@ mixin table(theadContent, tbodyContent, rowOrCol)
           for item in tbodyContent
             td=item
           -i++
+
+mixin form(header)
+  form.comment-form
+    h2=header
+    input(type="text" name="comment" id="comment-name", required)
+    label(for="comment-name") Name
+    input(type="email" name="comment" id="comment-email", required)
+    label(for="comment-email") E-mail
+    input(type="url" name="comment" id="comment-url")
+    label(for="comment-url") Web site
+    textarea(name="comment" cols="30" rows="10", required)
+    button(type="submit") Send

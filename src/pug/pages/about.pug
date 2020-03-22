@@ -1,0 +1,70 @@
+extends ../layout/main
+
+block variables
+  - var title = 'MODUS versus';
+  - var pageClass = 'about-page';
+  - var c = 0;
+  - var a = 0;
+  -
+    var backContents = { descr: `Curabitur quis nisl in leo euismod venenatis eu in diam.
+      Etiam auctor diam pellentesque lectus vehicula mattis.
+      Nulla ac massa at dolor condimentum`,
+      icons: [ 
+        { name: 'https://facebook.com', icon: 'fab fa-facebook-square' },
+        { name: 'https://plus.google.com', icon: 'fab fa-google-plus-square' },
+        { name: 'https://twitter.com', icon: 'fab fa-twitter-square' },
+        { name: 'https://linkedin.com', icon: 'fab fa-linkedin' }
+        ]
+    };
+
+block content
+  main.about-main
+    +pageTitle('About us')
+    section.about-info
+      .container
+        .info-descr
+          h2.info-descr__header Donec faucibus ultricies congue
+          p.info-descr__descr Maecenas eget turpis turpis.
+            | Nunc vel metus augue.
+            | Aenean euismod cursus ligula eget dapibus.
+            | Praesent vel erat in tortor placerat dignissim.
+            | Duis dapibus aliquam mi, eget euismod sem scelerisque
+            | ut. Vivamus at elit quis urna adipiscing iaculis. 
+            | Curabitur vitae velit in neque dictum blandit. 
+            | Proin in iaculis neque. Pellentesque habitant morbi tristique 
+            | senectus et netus et malesuada fames ac turpis egestas.
+        .info-why
+          include ../includes/modules/block-why
+    section.team
+      .why.team__item
+        .why__ruler
+          img(src="../../assets/img/ruler-w.svg" alt="white ruler")
+          .container
+            .team-header
+              h2 Our team
+      .team-card
+        .container
+          .team-card-pos
+            .front-card
+              .service-cards
+                while c < 4
+                  +card('far fa-image')
+                  -c++
+            .back-card
+              while a < 4
+                .content
+                  p.back-card__descr #{backContents.descr}
+                  .back-card-icons
+                    for item in backContents.icons
+                      a(href=item.name target="_blank") #[i(class=item.icon)]
+                -a++
+    section.about-clients
+      .container
+        .about-clients-descr
+          h2.about-clients__header Best Solution is the simplest IDEA!
+          p.about-clients__text Capacitance cascading integer reflective interface data development
+            | high bus cache dithering transponder. Curabitur vitae velit in neque dictum blandit.
+            | Proin in iaculis neque. Pellentesque habitant morbi tristique senectus et netus et
+            | malesuada fames ac turpis egestas.
+        .about-clients 
+          +carousel('Our Happy Clients')

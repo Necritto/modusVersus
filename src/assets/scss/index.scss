@@ -5,10 +5,11 @@
 body {
   font-family: $mainFont;
   background-color: #f3f3f3;
+  min-width: 1200px;
 }
 
 .container {
-  max-width: 1171px;
+  width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
 }
@@ -21,8 +22,27 @@ body {
   display: '';
 }
 
+.btn {
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 16.8px;
+  background-color: #62b9b0;
+  padding: 20px 65px;
+  border-radius: 10px;
+  max-width: 200px;
+  cursor: pointer;
+}
+
 @import "modules/header.scss";
 @import "modules/header__slider.scss";
 @import "modules/services__section.scss";
 @import "modules/why__section.scss";
 @import "modules/clients__section.scss";
+@import "modules/footer.scss";
+@import "modules/about.scss";
+@import "modules/portfolio.scss";
+@import "modules/single__portfolio";
+@import "modules/blog.scss";
+@import "modules/single__blogPost";
+@import "modules/features";
+@import "modules/contacts";

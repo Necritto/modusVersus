@@ -1,0 +1,43 @@
+extends ../layout/main
+
+block variables
+  - var title = 'MODUS versus';
+  - var pageClass = 'contacts-page';
+
+block content
+  main.contacts-main
+    +pageTitle('Contact us')
+    section.map
+      .container
+        #map
+        .map__descr
+          p Etiam tincidunt laoreet turpis a vulputate. 
+            | Etiam diam lorem, convallis ac laoreet a, pretium id nisl. 
+            | Morbi tincidunt nibh a ante fringilla at tincidunt eros venenatis. 
+            | Nunc a dui mi, in imperdiet sem. Aenean eu nulla massa. 
+            | Ut interdum tristique est commodo pharetra.
+    section.contacts-form
+      .container
+        .contacts-wrap
+          .form
+            +form('Send inquiry')
+          .address
+            h2 Address
+            p.address__mark #[i.fas.fa-map-marker-alt]#[span Ut interdum tristique est com modo pharetra.]
+            p.address__phone #[i.fas.fa-phone-alt]#[a(href="tel:18225695896") 182 2569 5896]
+            p.address__email #[i.far.fa-envelope]#[a(href="mailto:modus@versus.com") modus@versus.com]
+block script
+  script.
+    var pos = {lat: 40.789393, lng: -73.942436};
+    var map;
+    function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+    center: pos,
+    zoom: 14
+    });
+    var marker = new google.maps.Marker({
+    position: pos,
+    map: map
+    });
+    }
+  script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdWuwEEpiCMD36xs4pAlP3NH1ZU6nmR9c&callback=initMap" async defer)

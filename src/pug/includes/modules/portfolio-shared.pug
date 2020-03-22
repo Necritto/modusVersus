@@ -1,0 +1,22 @@
+-
+  var filterNtns = [
+    {name: 'all', class: 'all'}, 
+    {name: 'web design', class: 'webDesign'}, 
+    {name: 'logo design', class: 'logoDesign'}, 
+    {name: 'photography', class: 'photography'}, 
+    {name: 'wordpress', class: 'wordpress'}
+  ];
+
+main.portfolio1-main
+  +pageTitle('Portfolio')
+  section.portfolio-posts
+    .container
+      .portfolio
+        .portfolio-btns
+          for item in filterNtns
+            button(class=`portfolio-btn__item ${item.class}`)=item.name
+        .portfolio-post-block
+        .portfolio-post-pages
+          button.prev-btn #[i.fas.fa-angle-left]
+          .portfolio-pages
+          button.next-btn #[i.fas.fa-angle-right]

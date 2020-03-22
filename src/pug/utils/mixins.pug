@@ -2,7 +2,7 @@ mixin navLink(link, name)
   li.navBar__item-li
     a(href=link).nav__item-link=name
 
-mixin portfolio(link, name)
+mixin portfolio(name)
   li.navBar__item-li
     a(href=link)=name
       i.fa.fa-angle-down
@@ -10,26 +10,28 @@ mixin portfolio(link, name)
       li
         span
           i.fas.fa-angle-right
-          a(href=link) #{name} 1 column page
+          a(href="./portfolio1col.html") #{name} 1 column page
       li
         span
           i.fas.fa-angle-right
-          a(href=link) #{name} 2 column page
+          a(href="./portfolio2col.html") #{name} 2 column page
       li
         span
           i.fas.fa-angle-right
-          a(href=link) #{name} 3 column page
+          a(href="./portfolio3col.html") #{name} 3 column page
 
 mixin card(icon, header, descr)
   .card-wrap
     .card-item
       span.card__icon
         i(class=icon)
-      h3.card__header
-        =header
-      p.card__descr
-        =descr
-    button.card__btn read more
+      if header
+        h3.card__header
+          =header
+      if descr
+        p.card__descr
+          =descr
+    button.card__btn.btn read more
 
 mixin whyImg(url)
   .why-wrap
@@ -43,8 +45,8 @@ mixin whyImg(url)
     .why-img
       img(src=url, alt="your image" class="why-img__item")
 
-mixin list(text)
-  i.fas.fa-arrow-right
+mixin list(classes, text)
+  i(class=classes)
   p=text
 
 mixin percent(num, str)
@@ -55,3 +57,254 @@ mixin percent(num, str)
     .number
       h2=num
     h3=str
+
+mixin post(text, date)
+  .post
+    .post__img
+      i.far.fa-image
+    .post__item
+      p.post__descr=text
+      span=date
+
+mixin pageTitle(text)
+  section.pageTitle
+    .container
+      .pageTitle-wrap
+        h1.pageTitle-us__item.pageTitle-us__title=text
+        p.pageTitle-us__item.pageTitle-us__path Home&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;#[=text]#[span]
+      .triangle
+
+mixin portfolioPost(img, h3, p, link)
+  .portfolio-post
+    .portfolio-img
+      if (img)
+        img(class="portfolio-post__img" src=img)
+      else
+        .withoutImg
+          i.far.fa-image
+    .portfolio-post-main
+      h3.portfolio-post__item.portfolio-post__header=h3
+      p.portfolio-post__item.portfolio-post__descr=p
+      .portfolio-post-footer
+        .portfolio-post-address
+          a(href=link class="portfolio-post__link" target="_blank")=link
+            .chain-bg
+              i.fas.fa-link
+        button.btn.portfolio-post-btn View&nbsp;details
+
+mixin slider(h1, p1, h2, p2, h3, p3)
+  .header__slider
+    .header__wrap
+      .slider__arrow.angle-left
+        i.fas.fa-angle-double-left
+      .slider__content
+        if (h1 || p1)
+          .slider__content-inner.hide
+            .head-wrap
+              h1.slider-header=h1
+            .descr-wrap
+              p.slider-description=p1
+          .slider__content-inner.show
+            .head-wrap
+              h1.slider-header=h2
+            .descr-wrap
+              p.slider-description=p2
+          .slider__content-inner.hide
+            .head-wrap
+              h1.slider-header=h3
+            .descr-wrap
+              p.slider-description=p3
+        else
+          .slider__content-inner.hide
+            .slider__image
+              i.far.fa-image
+          .slider__content-inner.show
+            .slider__image
+              i.far.fa-image
+          .slider__content-inner.hide
+            .slider__image
+              i.far.fa-image
+      .slider__arrow.angle-right
+        i.fas.fa-angle-double-right
+    .header__border
+      .border
+      .border.border-active
+      .border
+
+mixin carousel(title, sp)
+  section.clients
+    .container
+      .clients-header
+        h3.clients-header__head=title
+        .line
+          svg
+            g
+              circle(cx=5 cy=5 r=5)
+              line(x1=0 y1=0 x2=880 y2=0)
+        .clients-buttons
+          button.clients__btn.btn-left
+            i.fas.fa-angle-left
+          button.clients__btn.btn-right
+            i.fas.fa-angle-right
+      .carousel
+        if !sp
+          .clients-slider
+            - var q = 0;
+            while q < 6
+              .slide
+                img(src="../../../assets/img/client.png" alt="client" class="slide-single")
+              -q++
+        else
+          .clients-slider
+            - var w = 0;
+              while w < 4
+                +postItem()
+                -w++
+
+mixin postItem()
+  .slide
+    .portfolio-post
+      .portfolio-post__front
+        .portfolio-img
+          .withoutImg
+            i.far.fa-image
+      .portfolio-post__back
+        .portfolio-post__back-refs
+          a(class="portfolio-post__link" target="_blank" href="/")
+            .chain-bg
+              i.far.fa-eye
+          a(class="portfolio-post__link" target="_blank" href="/")
+            .chain-bg
+              i.fas.fa-link
+        p.portfolio-post__back-descr Lorem ipsum
+
+mixin docsBlogPost(month, day, h3, p)
+  .blog-datatype
+    .blog__date
+      p=month
+      span=day
+    .blog__type
+      i.far.fa-file-alt
+  .blog-post
+    .withoutImg
+      i.far.fa-image
+    h3=h3
+    p Posted by #[span Admin] in #[span Wordpress] #[span #[i.fas.fa-tags] Design, Template] #[span #[i.fas.fa-comments] 22]
+    p=p
+    a(href="../singleBlogPage.html" target="_blank") Continue reading #[i.fas.fa-arrow-right]
+
+mixin imageBlogPost(month, day, h3)
+  .blog-datatype
+    .blog__date
+      p=month
+      span=day
+    .blog__type
+      i.far.fa-image
+  .blog-post
+    +slider()
+    h3=h3
+    p Posted by #[span Admin] in #[span Photography] #[span #[i.fas.fa-tags] Photo] #[span #[i.fas.fa-comments] 22]
+
+mixin videoBlogPost(month, day, src, h3)
+  .blog-datatype
+    .blog__date
+      p=month
+      span=day
+    .blog__type
+      i.fas.fa-film
+  .blog-post
+    .video-container
+      video(id="video-player" poster="../../assets/img/poster.png")
+        source(src=`../../assets/video/${src}.mp4` type="video/mp4")
+        source(src=`../../assets/video/${src}.webm` type="video/webm")
+        source(src=`../../assets/video/${src}.ogv` type="video/ogg")
+      +controls(true)
+    h3=h3
+    p Posted by #[span Admin] in #[span Video] #[span #[i.fas.fa-tags] Nature] #[span #[i.fas.fa-comments] 22]
+
+mixin quoteBlogPost(month, day, h3, quote)
+  .blog-datatype
+    .blog__date
+      p=month
+      span=day
+    .blog__type
+      i.fas.fa-quote-right
+  .blog-post
+    h3=h3
+    p Posted by #[span Admin] in #[span Video] #[span #[i.fas.fa-tags] Nature] #[span #[i.fas.fa-comments] 22]
+    blockquote=quote
+
+mixin audioBlogPost(month, day, src, h3)
+  .blog-datatype
+    .blog__date
+      p=month
+      span=day
+    .blog__type
+      i.fas.fa-volume-up
+  .blog-post
+    .audio-container
+      audio(id="audio-player" preload="metadata")
+        source(src=`../../assets/audio/${src}.ogg` type="audio/ogg; codecs=vorbis")
+        source(src=`../../assets/audio/${src}.mp3` type="audio/mpeg")
+      +controls()
+    h3=h3
+    p Posted by #[span Admin] in #[span Audio] #[span #[i.fas.fa-tags] Nature] #[span #[i.fas.fa-comments] 22]
+
+mixin controls(video)
+  .controls
+    button.togglePlay.paused #[i.fas.fa-play]
+    progress(max="100" value="0")
+    p #[span.currentTimestamp 00:00]&emsp;/&emsp;#[span.entireDuration 00:00]
+    if (video)
+      button.expand #[i.fas.fa-expand-alt]
+    else
+      button.volume.muted #[i.fas.fa-volume-up]
+
+mixin accordion(header, descr)
+  .accordion__item
+    .accordion-btn
+      h4=header
+      p #[i.fas.fa-plus-circle]
+    .accordion-panel.hide
+      p=descr
+
+mixin tabsBlock(descr, id)
+  div(class="tabs__block" id=id)
+    p=descr
+    .tabs__img
+      i.far.fa-image
+
+mixin services(header, descr)
+  .top-services
+    .wrap
+      h2.service__header=header
+      p.service__descr=descr
+    button.service__btn View&nbsp;more
+
+mixin table(theadContent, tbodyContent, rowOrCol)
+  table
+    thead
+      tr
+        - var i = 0;
+        while i < rowOrCol
+          th=theadContent
+          -i++
+    tbody
+      - var i = 0;
+      while i < rowOrCol
+        tr
+          for item in tbodyContent
+            td=item
+          -i++
+
+mixin form(header)
+  form.comment-form
+    h2=header
+    input(type="text" name="comment" id="comment-name", required)
+    label(for="comment-name") Name
+    input(type="email" name="comment" id="comment-email", required)
+    label(for="comment-email") E-mail
+    input(type="url" name="comment" id="comment-url")
+    label(for="comment-url") Web site
+    textarea(name="comment" cols="30" rows="10", required)
+    button(type="submit") Send

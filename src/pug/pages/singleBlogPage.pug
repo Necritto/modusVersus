@@ -1,0 +1,54 @@
+extends ../layout/main
+
+block variables
+  - var title = 'MODUS versus';
+  - var pageClass = 'singleBlogPage';
+  -
+    var icons = [ 
+      { name: 'https://facebook.com', icon: 'fab fa-facebook-square' },
+      { name: 'https://plus.google.com', icon: 'fab fa-google-plus-square' },
+      { name: 'https://twitter.com', icon: 'fab fa-twitter-square' },
+      { name: 'https://linkedin.com', icon: 'fab fa-linkedin' }
+      ];
+
+block content
+  main.blog-main
+    +pageTitle('Blog')
+    .container
+      .blog-container
+        section.blog-content
+          .blog-item.single-post
+            .blog-datatype
+              .blog__type
+                i.far.fa-file-alt
+            .blog-post
+              h3 Duis dapibus aliquam mi, eget euismod sem scelerisque ut.
+              p Posted by #[span Admin] in #[span Wordpress] #[span #[i.fas.fa-tags] Design, Template] #[span #[i.fas.fa-comments] 22]
+          +slider()
+          .blog-post__descr
+            - var i = 0
+            while i < 4
+              p Duis dapibus aliquam mi, eget euismod sem scelerisque ut. 
+                |  Vivamus at elit quis urna adipiscing iaculis. 
+                |  Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque. 
+                |  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+                |  Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque. 
+                |  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+                -i++
+            blockquote Duis dapibus aliquam mi, eget euismod sem scelerisque ut.
+              | Vivamus at elit quis urna adipiscing iaculis. Curabitur vitae velit in neque dictum blandit. 
+              | Proin in iaculis neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+              | Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque.
+              | Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+          .share
+            p share
+            .socials-links
+              for item in icons
+                a(href=item.name target="_blank") #[i(class=item.icon)]
+            .nav-btns
+              button.prev-btn #[i.fas.fa-angle-left]
+              button.next-btn #[i.fas.fa-angle-right]
+          .comment
+            #comment-field
+            +form('Leave a comment')
+        include ../includes/modules/blog-aside

@@ -1,0 +1,63 @@
+footer.footer
+  .footer-ruler
+    img(src="../../../assets/img/ruler.png" alt="ruler" class="ruler")
+  .container
+    .footer-wrap
+      .footer-column.first-column
+        img(src="../../../assets/img/logo.png" alt="MODUS versus" class="logo")
+        p.footer__descr Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          | Nam viverra euismod odio, gravida pellentesque urna varius vitae.
+          | Sed dui lorem, adipiscing in adipiscing et, interdum nec .
+        p.phone Phone: #[a(href="tel:18225695896") 182 2569 5896]
+        p.email e-mail: #[a(href="mailto:info@modus.versus") info@modus.versus]
+      .footer-column.second-column
+        table.footer-table 
+          - var theadContent =[ { name1: 'Company', name2: 'Community' } ];
+          -
+            var tbodyContent = [
+              { name1: 'About', name2: 'Blog' },
+              { name1: 'FAQ', name2: 'Forum' },
+              { name1: 'Contact', name2: 'Support' },
+              { name1: 'AbTermsout', name2: 'Newsletter' },
+              { name1: 'Privacy' },
+              { name1: 'Testimonials' }
+            ];
+          thead
+            for item in theadContent
+              tr
+                th #{item.name1}
+                th #{item.name2}
+          tbody
+            for item in tbodyContent
+              tr
+                if (!item.name2)
+                  td(class="link") #[i.fas.fa-angle-right] #{item.name1}
+                  td
+                else
+                  td(class="link") #[i.fas.fa-angle-right] #{item.name1}
+                  td(class="link") #[i.fas.fa-angle-right] #{item.name2}
+      .footer-column.third-column
+        p.title from the #[span blog]
+        .footer-posts
+          -
+            var postData = [
+              { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', date: '26 May, 2013' },
+              { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', date: '27 May, 2013' }
+            ];
+          for item in postData
+            +post(item.text, item.date)
+  .footer-social
+    .container
+      .footer-wrap
+        .copy
+          p 2013  ModusVersus
+        .social
+          -
+            var socials = [
+              { name: 'https://facebook.com', icon: 'fab fa-facebook-f' },
+              { name:'https://plus.google.com', icon: 'fab fa-google-plus-g' },
+              { name:'https://twitter.com', icon: 'fab fa-twitter' },
+              { name:'https://aiderss.com', icon: 'fas fa-rss' }
+            ];
+          for item in socials
+            a(href=item.name target="_blank") #[i(class=item.icon)]

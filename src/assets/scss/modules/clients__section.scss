@@ -45,15 +45,16 @@
 
     .clients-buttons {
       @extend %center;
+      max-width: 100px;
 
-      .btn {
+      .clients__btn {
         width: 40px;
         height: 40px;
         border-radius: 10px;
         background-color: #98a3a3;
         color: #ffffff;
         font-size: 20px;
-        margin-right: 10px;
+        margin-right: 20px;
         cursor: pointer;
 
         &:last-child {
@@ -72,23 +73,24 @@
     }
   }
 
+  .carousel {
+    overflow: hidden;
+  }
+
   .clients-slider {
     position: relative;
-    @extend %center;
+    display: flex;
     justify-content: space-between;
     width: 100%;
     height: 90px;
     margin: 40px 0;
+    transition: all ease 1s;
 
     .slide {
       width: 170px;
       height: 90px;
       background-color: #f8f8f8;
       @extend %center;
-      transition: all ease 1s;
-      position: absolute;
-      top: 0;
-      left: 0;
     }
   }
 }

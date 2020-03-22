@@ -294,3 +294,15 @@ mixin table(theadContent, tbodyContent, rowOrCol)
           for item in tbodyContent
             td=item
           -i++
+
+mixin form(header)
+  form.comment-form
+    h2=header
+    input(type="text" name="comment" id="comment-name", required)
+    label(for="comment-name") Name
+    input(type="email" name="comment" id="comment-email", required)
+    label(for="comment-email") E-mail
+    input(type="url" name="comment" id="comment-url")
+    label(for="comment-url") Web site
+    textarea(name="comment" cols="30" rows="10", required)
+    button(type="submit") Send

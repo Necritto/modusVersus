@@ -25,10 +25,12 @@ mixin card(icon, header, descr)
     .card-item
       span.card__icon
         i(class=icon)
-      h3.card__header
-        =header
-      p.card__descr
-        =descr
+      if header
+        h3.card__header
+          =header
+      if descr
+        p.card__descr
+          =descr
     button.card__btn.btn read more
 
 mixin whyImg(url)

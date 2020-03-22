@@ -5,11 +5,13 @@
 body {
   font-family: $mainFont;
   background-color: #f3f3f3;
+  min-width: 1200px;
 }
 
 .container {
-  max-width: 1171px;
+  width: 1200px;
   margin: 0 auto;
+  padding: 0 15px;
 }
 
 .hide {

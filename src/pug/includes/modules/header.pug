@@ -10,6 +10,11 @@ header.header
             else
               +navLink(item.href, item.name)
       .search
-        i.fas.fa-search
+        .search__icon
+          i.fas.fa-search
+        .search__form.hide
+          .triangle
+          form(name="search")
+            input(type="search" name="search" id="searchItem" placeholder="Search the site" autocomplete)
 .header-ruler
   img(src="../../../assets/img/ruler.png" alt="ruler" class="ruler")
